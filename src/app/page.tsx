@@ -1,65 +1,380 @@
 import Image from "next/image";
 
+const WHATSAPP_URL = "https://chat.whatsapp.com/L3dalZ1lxe0ISX6mQew8Ba?mode=gi_t";
+
+const sections = [
+  { id: "weekend", label: "The Weekend" },
+  { id: "tickets", label: "Tickets" },
+  { id: "stay", label: "Stay" },
+  { id: "fund", label: "The Fund" },
+  { id: "contact", label: "Stay in Touch" },
+];
+
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
+    <div className="flex flex-1 flex-col">
+      <Header />
+      <main className="flex-1">
+        <Hero />
+        <Weekend />
+        <Tickets />
+        <Stay />
+        <Fund />
+        <Contact />
+      </main>
+      <Footer />
+    </div>
+  );
+}
+
+function Header() {
+  return (
+    <header className="sticky top-0 z-30 border-b border-black/10 bg-[var(--background)]/85 backdrop-blur">
+      <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-3">
+        <a href="#top" className="flex items-center gap-2 font-semibold tracking-tight">
+          <Image src="/crest.svg" alt="" width={28} height={36} priority />
+          <span>Sci &rsquo;96</span>
+        </a>
+        <nav className="hidden gap-6 text-sm text-zinc-600 sm:flex">
+          {sections.map((s) => (
+            <a key={s.id} href={`#${s.id}`} className="hover:text-[var(--queens-red)]">
+              {s.label}
+            </a>
+          ))}
+        </nav>
+      </div>
+    </header>
+  );
+}
+
+function Hero() {
+  return (
+    <section id="top" className="relative overflow-hidden">
+      <div className="mx-auto flex max-w-5xl flex-col items-center gap-8 px-6 pt-16 pb-20 text-center sm:pt-24 sm:pb-28">
         <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
+          src="/crest.svg"
+          alt="Sci '96 crest"
+          width={180}
+          height={234}
           priority
+          className="h-auto w-32 sm:w-44"
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+        <div className="flex flex-col items-center gap-4">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--queens-red)]">
+            Queen&rsquo;s Engineering · Sci &rsquo;96
+          </p>
+          <h1 className="text-balance text-4xl font-bold leading-[1.05] tracking-tight sm:text-6xl">
+            30 years later. <span className="text-[var(--queens-blue)]">We&rsquo;re coming home.</span>
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="max-w-xl text-balance text-lg text-zinc-600 sm:text-xl">
+            Homecoming weekend in Kingston · <strong>October 16–18, 2026</strong>. Nostalgia,
+            celebration, and questionable decisions — just like the old days.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
+        <div className="flex flex-col items-center gap-3 sm:flex-row">
           <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
+            className="inline-flex h-12 items-center justify-center rounded-full bg-[var(--queens-red)] px-7 text-base font-semibold text-white shadow-sm transition hover:bg-[#94000c]"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
+            Join the WhatsApp group
           </a>
           <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#weekend"
+            className="inline-flex h-12 items-center justify-center rounded-full border border-black/15 px-7 text-base font-semibold transition hover:border-black/40"
           >
-            Documentation
+            See the weekend
           </a>
         </div>
-      </main>
+        <p className="max-w-md text-sm text-zinc-500">
+          The WhatsApp group is where it&rsquo;s all happening — updates, planning chatter, and
+          reconnecting with classmates you haven&rsquo;t talked to in way too long.
+        </p>
+      </div>
+    </section>
+  );
+}
+
+function SectionHeading({
+  eyebrow,
+  title,
+  children,
+}: {
+  eyebrow: string;
+  title: string;
+  children?: React.ReactNode;
+}) {
+  return (
+    <div className="mb-10 flex flex-col gap-3">
+      <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--queens-red)]">
+        {eyebrow}
+      </p>
+      <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">{title}</h2>
+      {children ? <p className="max-w-2xl text-lg text-zinc-600">{children}</p> : null}
     </div>
+  );
+}
+
+function Weekend() {
+  return (
+    <section id="weekend" className="border-t border-black/10 bg-white">
+      <div className="mx-auto max-w-5xl px-6 py-20 sm:py-24">
+        <SectionHeading eyebrow="The Weekend" title="What&rsquo;s happening when">
+          We&rsquo;ve organized a plan for nostalgia, celebration, and questionable decisions.
+          Show up, see your people, eat carbs, smile for the camera.
+        </SectionHeading>
+
+        <div className="grid gap-6 md:grid-cols-2">
+          <DayCard
+            day="Friday"
+            date="October 16"
+            items={[
+              { time: "12:00 PM", title: "Ritual at Clark Hall Pub", body: "Where it all begins. Always." },
+              { time: "3:00 PM", title: "Re-entry at Clark — or regroup at the Toucan", body: "If the line is too long, you know where to find us." },
+              { time: "Evening", title: "Trifac Mixer · The Tap House", body: "ArtSci, Commerce, and Engineering all under one roof." },
+            ]}
+          />
+          <DayCard
+            day="Saturday"
+            date="October 17"
+            items={[
+              { time: "8:30–11:30 AM", title: "Pancake Breakfast (Queen&rsquo;s)", body: "Bookable time slot for the class year photo. Show up, eat carbs, smile for the camera." },
+              { time: "~10:00 AM", title: "Pancake Kegger", body: "Student house on William near Division — a proud Sci &rsquo;96 tradition." },
+              { time: "Afternoon", title: "Football Game", body: "Your ticket is included in the reunion package. Sci &rsquo;96 class block — show up and be loud." },
+              { time: "Evening", title: "University Club Mixer", body: "Finger foods, drinks, good company. The Dean is dropping by to say hi." },
+            ]}
+          />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function DayCard({
+  day,
+  date,
+  items,
+}: {
+  day: string;
+  date: string;
+  items: { time: string; title: string; body: string }[];
+}) {
+  return (
+    <article className="flex flex-col gap-5 rounded-2xl border border-black/10 bg-[var(--background)] p-7">
+      <header className="flex items-baseline justify-between border-b border-black/10 pb-4">
+        <h3 className="text-2xl font-bold text-[var(--queens-blue)]">{day}</h3>
+        <p className="text-sm font-medium text-zinc-500">{date}</p>
+      </header>
+      <ol className="flex flex-col gap-5">
+        {items.map((it) => (
+          <li key={it.title} className="flex flex-col gap-1">
+            <p className="font-mono text-xs uppercase tracking-wider text-[var(--queens-red)]">
+              {it.time}
+            </p>
+            <p className="font-semibold">{it.title}</p>
+            <p className="text-sm text-zinc-600">{it.body}</p>
+          </li>
+        ))}
+      </ol>
+    </article>
+  );
+}
+
+function Tickets() {
+  return (
+    <section id="tickets" className="border-t border-black/10">
+      <div className="mx-auto max-w-5xl px-6 py-20 sm:py-24">
+        <SectionHeading eyebrow="Tickets" title="One package, all the things">
+          A single ticket package covers all class events plus your football ticket — one easy
+          checkout through the Queen&rsquo;s Homecoming portal. Guest packages available at
+          different pricing.
+        </SectionHeading>
+
+        <div className="grid gap-6 sm:grid-cols-3">
+          <Stat label="Registration opens" value="June 26, 2026" />
+          <Stat label="Push for early signups" value="Through August" hint="Lock in the good stuff (swag included)." />
+          <Stat label="Registration closes" value="October 1, 2026" />
+        </div>
+
+        <p className="mt-8 max-w-2xl text-zinc-600">
+          Digital tickets will come through the Homecoming app — download it when the time comes.
+          More details on pricing and package contents are coming soon.
+        </p>
+      </div>
+    </section>
+  );
+}
+
+function Stat({ label, value, hint }: { label: string; value: string; hint?: string }) {
+  return (
+    <div className="rounded-2xl border border-black/10 bg-white p-6">
+      <p className="text-xs font-semibold uppercase tracking-wider text-zinc-500">{label}</p>
+      <p className="mt-2 text-xl font-bold text-[var(--queens-blue)]">{value}</p>
+      {hint ? <p className="mt-2 text-sm text-zinc-600">{hint}</p> : null}
+    </div>
+  );
+}
+
+function Stay() {
+  return (
+    <section id="stay" className="border-t border-black/10 bg-white">
+      <div className="mx-auto max-w-5xl px-6 py-20 sm:py-24">
+        <SectionHeading eyebrow="Stay" title="Where to crash">
+          Downtown is mostly sold out, but we have two hotels blocked at Hwy 401 / Division
+          (across the parking lot from each other). Easy carpool or party-bus territory.
+        </SectionHeading>
+
+        <div className="mb-8 flex items-start gap-3 rounded-xl border border-[var(--queens-gold)]/40 bg-[var(--queens-gold)]/10 p-4 text-sm">
+          <span className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--queens-red)]">
+            Heads up
+          </span>
+          <p className="text-zinc-700">
+            Both blocks are held until <strong>August 31, 2026</strong>. After that, rooms get
+            released back to the public at whatever the going rate is. Book early.
+          </p>
+        </div>
+
+        <div className="grid gap-6 md:grid-cols-2">
+          <HotelCard
+            name="Comfort Suites"
+            roomType="Double-queen rooms"
+            rate="$209 / night"
+            phone="343-477-0280"
+            link="https://www.choicehotels.com/reservations/groups/AJ83J0"
+            inventory="10 rooms"
+          />
+          <HotelCard
+            name="Quality Inn & Conference Centre"
+            roomType="Single king rooms"
+            rate="$189 / night"
+            phone="613-546-3661"
+            link="https://www.choicehotels.com/reservations/groups/VX25T9"
+            inventory="10 rooms"
+          />
+        </div>
+
+        <div className="mt-8 grid gap-4 rounded-2xl border border-black/10 bg-[var(--background)] p-6 text-sm text-zinc-700 sm:grid-cols-2">
+          <Detail label="Group name (when calling)" value={'"Queen\u2019s Sci\u201996 30th Reunion"'} />
+          <Detail label="Bookable nights" value="Thu Oct 15 – Sun Oct 18 (Thu also at group rate)" />
+          <Detail label="Minimum stay" value="2 nights (Fri + Sat)" />
+          <Detail label="Taxes & parking" value="Rates exclude 5% MAT + 13% HST · $6 / night parking" />
+          <Detail label="Check-in / out" value="3:00 PM / 11:00 AM" />
+          <Detail label="Cancellation" value="Free up to 7 days before arrival; after that, 1 night + tax" />
+        </div>
+
+        <p className="mt-8 max-w-2xl text-sm text-zinc-600">
+          Bonus: Homecoming falls during Fall Reading Week, so a lot of students will be out of
+          town. We&rsquo;re working with EngSoc to connect us with students renting out their houses
+          for the weekend — more on that soon.
+        </p>
+      </div>
+    </section>
+  );
+}
+
+function HotelCard({
+  name,
+  roomType,
+  rate,
+  phone,
+  link,
+  inventory,
+}: {
+  name: string;
+  roomType: string;
+  rate: string;
+  phone: string;
+  link: string;
+  inventory: string;
+}) {
+  return (
+    <article className="flex flex-col gap-5 rounded-2xl border border-black/10 bg-[var(--background)] p-7">
+      <header className="flex flex-col gap-1">
+        <h3 className="text-xl font-bold text-[var(--queens-blue)]">{name}</h3>
+        <p className="text-sm text-zinc-600">{roomType} · {inventory} held</p>
+      </header>
+      <p className="text-3xl font-bold tracking-tight">{rate}</p>
+      <div className="flex flex-col gap-2 text-sm">
+        <a
+          href={link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex h-11 items-center justify-center rounded-full bg-[var(--queens-blue)] px-5 font-semibold text-white transition hover:bg-[#0a2143]"
+        >
+          Book online
+        </a>
+        <a
+          href={`tel:${phone.replace(/-/g, "")}`}
+          className="inline-flex h-11 items-center justify-center rounded-full border border-black/15 px-5 font-semibold transition hover:border-black/40"
+        >
+          Call {phone}
+        </a>
+      </div>
+    </article>
+  );
+}
+
+function Detail({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="flex flex-col gap-1">
+      <p className="text-xs font-semibold uppercase tracking-wider text-zinc-500">{label}</p>
+      <p>{value}</p>
+    </div>
+  );
+}
+
+function Fund() {
+  return (
+    <section id="fund" className="border-t border-black/10">
+      <div className="mx-auto max-w-3xl px-6 py-20 text-center sm:py-24">
+        <SectionHeading eyebrow="The Fund" title="Something bigger than a weekend">
+          A small group of classmates is pulling together a Sci &rsquo;96 class fund to leave a
+          mark on Engineering at Queen&rsquo;s — separate from the reunion, but in the same
+          spirit. More details coming soon.
+        </SectionHeading>
+      </div>
+    </section>
+  );
+}
+
+function Contact() {
+  return (
+    <section id="contact" className="border-t border-black/10 bg-[var(--queens-blue)] text-white">
+      <div className="mx-auto flex max-w-3xl flex-col items-center gap-6 px-6 py-20 text-center sm:py-24">
+        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--queens-gold)]">
+          Stay in Touch
+        </p>
+        <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+          The #1 thing you can do right now
+        </h2>
+        <p className="max-w-xl text-lg text-white/80">
+          Get on the Sci &rsquo;96 WhatsApp group. That&rsquo;s where the planning chatter, the
+          updates, and the reconnecting actually happen.
+        </p>
+        <a
+          href={WHATSAPP_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex h-12 items-center justify-center rounded-full bg-white px-7 text-base font-semibold text-[var(--queens-blue)] shadow-sm transition hover:bg-[var(--queens-gold)]"
+        >
+          Join the WhatsApp group
+        </a>
+        <p className="text-sm text-white/60">
+          This site is reaching most of the class, but not everyone — spread the word.
+        </p>
+      </div>
+    </section>
+  );
+}
+
+function Footer() {
+  return (
+    <footer className="border-t border-black/10 bg-[var(--background)]">
+      <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-3 px-6 py-8 text-sm text-zinc-500 sm:flex-row">
+        <p>Built by the Sci &rsquo;96 reunion organizing committee.</p>
+        <p className="font-semibold tracking-wider text-[var(--queens-red)]">Cha Gheill!</p>
+      </div>
+    </footer>
   );
 }
