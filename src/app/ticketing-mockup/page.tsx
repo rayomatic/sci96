@@ -87,7 +87,7 @@ const DEFAULT_SWAG: SwagItemContent[] = [
       ["SLEEVE (CB, in)", "36", "36¾", "37½", "38¼", "39", "39⅜"],
     ],
     bannerOverlay: {
-      cx: "62%",
+      cx: "57%",
       cy: "41%",
       w: "11%",
       src: "/swag/hoodie-design.png",
@@ -137,7 +137,7 @@ const DEFAULT_SWAG: SwagItemContent[] = [
 ];
 
 const STORAGE_KEY_PKG = "sci96-mockup-package-v1";
-const STORAGE_KEY_SWAG = "sci96-mockup-swag-v18";
+const STORAGE_KEY_SWAG = "sci96-mockup-swag-v19";
 
 function useLocalState<T>(key: string, defaults: T): [T, (next: T) => void, () => void] {
   const [value, setValue] = useState<T>(defaults);
