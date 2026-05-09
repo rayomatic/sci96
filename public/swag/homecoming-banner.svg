@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 90" role="img" aria-label="Homecoming 2026 banner">
+  <!-- Curved navy ribbon with red border, gold serif text -->
+  <path d="M10,20 Q180,6 350,20 L340,72 Q180,86 20,72 Z"
+        fill="#11335d" stroke="#b6121a" stroke-width="4"/>
+  <!-- Inner accent line -->
+  <path d="M18,26 Q180,14 342,26 L333,66 Q180,79 27,66 Z"
+        fill="none" stroke="#b6121a" stroke-width="1.5" opacity="0.6"/>
+  <text x="180" y="55"
+        font-family="Georgia, 'Times New Roman', serif"
+        font-size="26" font-weight="bold" letter-spacing="0.5"
+        fill="#fdb913" text-anchor="middle">Homecoming 2026</text>
+</svg>

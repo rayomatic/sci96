@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 220" role="img" aria-label="Navy high-profile snapback cap, front view">
+  <defs>
+    <linearGradient id="crownH" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1c4374"/>
+      <stop offset="55%" stop-color="#11335d"/>
+      <stop offset="100%" stop-color="#0a2245"/>
+    </linearGradient>
+    <linearGradient id="visorH" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#11335d"/>
+      <stop offset="100%" stop-color="#06182f"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Crown: taller, structured -->
+  <path d="M40,138 Q40,28 140,28 Q240,28 240,138 Z"
+        fill="url(#crownH)" stroke="#06182f" stroke-width="2"/>
+
+  <!-- 5-panel seams: center + two flanks -->
+  <path d="M140,28 L140,138" stroke="#06182f" stroke-width="1" opacity="0.4" fill="none"/>
+  <path d="M82,40 Q92,90 92,138" stroke="#06182f" stroke-width="1" opacity="0.35" fill="none"/>
+  <path d="M198,40 Q188,90 188,138" stroke="#06182f" stroke-width="1" opacity="0.35" fill="none"/>
+
+  <!-- Eyelets -->
+  <circle cx="115" cy="62" r="1.6" fill="#06182f"/>
+  <circle cx="165" cy="62" r="1.6" fill="#06182f"/>
+
+  <!-- Top button -->
+  <circle cx="140" cy="32" r="3.2" fill="#06182f"/>
+
+  <!-- Sweatband / hat-band line -->
+  <path d="M40,138 Q140,144 240,138" stroke="#06182f" stroke-width="2" opacity="0.55" fill="none"/>
+
+  <!-- Flat-brim visor -->
+  <path d="M28,138 L252,138 L246,168 Q140,182 34,168 Z"
+        fill="url(#visorH)" stroke="#000" stroke-width="1.5"/>
+  <!-- Brim front edge highlight -->
+  <path d="M30,140 L250,140" stroke="#1c4374" stroke-width="1" opacity="0.45" fill="none"/>
+</svg>
