@@ -60,7 +60,7 @@ const DEFAULT_PACKAGE: PackageContent = {
   ],
   noteTitle: "Two more tickets to grab",
   noteBody:
-    "The Trifac Mixer (Fri night) and the football game (Sat afternoon) are not included in this package — Queen's sells those separately. Add the Trifac ticket on the Friday Events tab and the football ticket on the Saturday Events tab.",
+    "The All Faculty '96 Smoker (Fri night) and the football game (Sat afternoon) are not included in this package — Queen's sells those separately. Add the Smoker ticket on the Friday Events tab and the football ticket on the Saturday Events tab.",
 };
 
 type SwagItemContent = {
@@ -149,20 +149,10 @@ const DEFAULT_SWAG: SwagItemContent[] = [
     image: "/swag/cap-holo-gold.jpg",
     sizes: ["One size · adjustable"],
   },
-  {
-    key: "foam-finger",
-    name: "Sci '96 Rock-On Foam Hand",
-    blurb:
-      "Yellow rock-on / horn-hand foam (Just Direct Promotions) with the Sci '96 crest in the palm — direct-transfer printed, not embroidered. Dave Marsh's pick for the football game and the class photo.",
-    price: 10,
-    image: "/swag/foam-finger.jpg",
-    sizes: ["One size"],
-    crestOverlay: { cx: "52%", cy: "84%", w: "15%", src: "/crest-foam.svg" },
-  },
 ];
 
-const STORAGE_KEY_PKG = "sci96-mockup-package-v8";
-const STORAGE_KEY_SWAG = "sci96-mockup-swag-v21";
+const STORAGE_KEY_PKG = "sci96-mockup-package-v9";
+const STORAGE_KEY_SWAG = "sci96-mockup-swag-v22";
 
 /** Read a File as a data URL, downscale via canvas, and return the data URL. Keeps localStorage payloads small. */
 function imageFileToDataUrl(file: File, maxDim = 800, quality = 0.85): Promise<string> {
@@ -639,7 +629,7 @@ function PackagePanel({
       date: "October 16",
       items: [
         { time: "12:00 PM", title: "Ritual at Clark Hall Pub", status: "free" },
-        { time: "9:00 PM", title: "Trifac Mixer · The Tap House", status: "friday" },
+        { time: "9:00 PM", title: "All Faculty '96 Smoker · The Tap House (6 Princess St)", status: "friday" },
       ],
     },
     {
@@ -844,11 +834,11 @@ function FridayPanel() {
           options={["$5", "$10", "$15", "$20"]}
         />
         <EventRow
-          name="Trifac Mixer · The Tap House"
-          when="Friday evening · downtown Kingston"
-          desc="ArtSci '96, Comm '96, and Sci '96 under one roof. Included in the Sci '96 Events — only purchase here if you skipped the package."
-          price="Included"
-          options={["Included with package", "Add à la carte ($45)"]}
+          name="All Faculty '96 Smoker · The Tap House"
+          when="Friday 9 PM · The Tap House, 6 Princess St"
+          desc="ArtSci '96, Comm '96, and Sci '96 under one roof — separate Queen's-sold ticket, not bundled in the Sci '96 Events package."
+          price="$45"
+          options={["1 ticket", "2 tickets", "3 tickets", "4 tickets"]}
         />
       </div>
     </section>
