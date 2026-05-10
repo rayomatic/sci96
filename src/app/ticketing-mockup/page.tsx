@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 const TABS = [
   "Registrant",
   "Guest",
-  "Sci '96 Package",
+  "Sci '96 Events",
   "Friday Events",
   "Saturday Events",
   "Sci '96 Swag",
@@ -18,14 +18,15 @@ const TABS = [
 type Tab = (typeof TABS)[number];
 
 const QUEENS_BLUE = "#11335d";
-const EDITABLE_TABS: readonly Tab[] = ["Sci '96 Package", "Sci '96 Swag"];
+const EDITABLE_TABS: readonly Tab[] = ["Sci '96 Events", "Sci '96 Swag"];
 
 const TAB_BY_SLUG: Record<string, Tab> = {
-  package: "Sci '96 Package",
+  events: "Sci '96 Events",
+  package: "Sci '96 Events", // backward-compat alias for already-shared links
   swag: "Sci '96 Swag",
 };
 const SLUG_BY_TAB: Partial<Record<Tab, string>> = {
-  "Sci '96 Package": "package",
+  "Sci '96 Events": "events",
   "Sci '96 Swag": "swag",
 };
 
@@ -40,16 +41,21 @@ type PackageContent = {
 };
 
 const DEFAULT_PACKAGE: PackageContent = {
-  title: "Sci '96 Package",
+  title: "Sci '96 Events",
   price: "$35",
   pricePer: "per person · same price for registrants and guests",
   intro:
-    "The Sci '96 Package bundles the two class-organized events: the Pancake Kegger on Saturday morning and the University Club mixer on Saturday night.",
+    "The Sci '96 Events bundles the two class-organized events: the Pancake Kegger on Saturday morning and the University Club mixer on Saturday night.",
   inclusions: [
-    { title: "Pancake Kegger", body: "Sat morning at a student house on William St." },
     {
-      title: "University Club mixer",
-      body: "Sat at 7pm, finger foods + cash bar.",
+      title: "Sci '96 Pancake Kegger · Saturday ~10 AM",
+      body:
+        "A proud Sci '96 tradition. Pancakes, kegs, and classmates packed into a student house on William St (near Division). Wander down after the Queen's Pancake Breakfast and class photo.",
+    },
+    {
+      title: "Sci '96 University Club Mixer · Saturday 7 PM",
+      body:
+        "Saturday night at the University Club (168 Stuart) — the anchor of the weekend. Finger foods circulating, cash bar, and the Dean of Engineering stopping in to say hi. Same room we picked for the 20-year — easy to catch up with people you haven't seen in years.",
     },
   ],
   noteTitle: "Two more tickets to grab",
@@ -105,6 +111,16 @@ const DEFAULT_SWAG: SwagItemContent[] = [
     crestOverlay: { cx: "50%", cy: "78%", w: "24%" },
   },
   {
+    key: "beanie",
+    name: "Cuffed Beanie (No Pom)",
+    blurb:
+      "Sportsman SP12 cuffed knit beanie in navy with the Sci '96 crest embroidered on the fold. Same warmth as the pom version, just lower-profile if poms aren't your thing.",
+    price: 20,
+    image: "/swag/beanie-no-pom.png",
+    sizes: ["One size"],
+    crestOverlay: { cx: "50%", cy: "70%", w: "24%" },
+  },
+  {
     key: "cap-low",
     name: "Low-Profile Cap (Dad Hat)",
     blurb:
@@ -125,6 +141,15 @@ const DEFAULT_SWAG: SwagItemContent[] = [
     crestOverlay: { cx: "50%", cy: "37%", w: "16%" },
   },
   {
+    key: "cap-holo-gold",
+    name: "Holographic Gold Cap",
+    blurb:
+      "Iridescent gold PU-leather baseball cap with the Sci '96 crest embroidered on the front. The flashy option — sourced separately, supplier and final pricing TBC.",
+    price: 35,
+    image: "/swag/cap-holo-gold.jpg",
+    sizes: ["One size · adjustable"],
+  },
+  {
     key: "foam-finger",
     name: "Sci '96 Rock-On Foam Hand",
     blurb:
@@ -136,8 +161,39 @@ const DEFAULT_SWAG: SwagItemContent[] = [
   },
 ];
 
-const STORAGE_KEY_PKG = "sci96-mockup-package-v1";
-const STORAGE_KEY_SWAG = "sci96-mockup-swag-v19";
+const STORAGE_KEY_PKG = "sci96-mockup-package-v8";
+const STORAGE_KEY_SWAG = "sci96-mockup-swag-v21";
+
+/** Read a File as a data URL, downscale via canvas, and return the data URL. Keeps localStorage payloads small. */
+function imageFileToDataUrl(file: File, maxDim = 800, quality = 0.85): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onerror = () => reject(reader.error);
+    reader.onload = () => {
+      const img = new window.Image();
+      img.onerror = () => reject(new Error("Could not decode image"));
+      img.onload = () => {
+        const scale = Math.min(1, maxDim / Math.max(img.width, img.height));
+        const w = Math.max(1, Math.round(img.width * scale));
+        const h = Math.max(1, Math.round(img.height * scale));
+        const canvas = document.createElement("canvas");
+        canvas.width = w;
+        canvas.height = h;
+        const ctx = canvas.getContext("2d");
+        if (!ctx) {
+          reject(new Error("No 2D context"));
+          return;
+        }
+        ctx.drawImage(img, 0, 0, w, h);
+        // Preserve PNG transparency for SVG-like sources, otherwise compress as JPEG.
+        const isPng = file.type === "image/png" || file.type === "image/svg+xml";
+        resolve(canvas.toDataURL(isPng ? "image/png" : "image/jpeg", quality));
+      };
+      img.src = reader.result as string;
+    };
+    reader.readAsDataURL(file);
+  });
+}
 
 function useLocalState<T>(key: string, defaults: T): [T, (next: T) => void, () => void] {
   const [value, setValue] = useState<T>(defaults);
@@ -167,7 +223,7 @@ function useLocalState<T>(key: string, defaults: T): [T, (next: T) => void, () =
 }
 
 export default function TicketingMockup() {
-  const [tab, setTabState] = useState<Tab>("Sci '96 Package");
+  const [tab, setTabState] = useState<Tab>("Sci '96 Events");
   const [editMode, setEditMode] = useState(false);
   const [pkg, setPkg, resetPkg] = useLocalState<PackageContent>(STORAGE_KEY_PKG, DEFAULT_PACKAGE);
   const [swag, setSwag, resetSwag] = useLocalState<SwagItemContent[]>(STORAGE_KEY_SWAG, DEFAULT_SWAG);
@@ -213,7 +269,7 @@ export default function TicketingMockup() {
         <div className="mt-8">
           {tab === "Registrant" && <RegistrantPanel />}
           {tab === "Guest" && <GuestPanel />}
-          {tab === "Sci '96 Package" && (
+          {tab === "Sci '96 Events" && (
             <PackagePanel content={pkg} setContent={setPkg} editMode={editMode} />
           )}
           {tab === "Friday Events" && <FridayPanel />}
@@ -313,7 +369,7 @@ function Tabs({ active, onChange }: { active: Tab; onChange: (t: Tab) => void })
               type="button"
               disabled={!isEditable}
               aria-disabled={!isEditable}
-              title={isEditable ? undefined : "Mockup: only Sci '96 Package and Sci '96 Swag are interactive"}
+              title={isEditable ? undefined : "Mockup: only Sci '96 Events and Sci '96 Swag are interactive"}
               onClick={() => isEditable && onChange(t)}
               className={
                 "px-3 py-3 text-sm transition " +
@@ -600,7 +656,7 @@ function PackagePanel({
 
   return (
     <section>
-      <PanelHeading title="Sci '96 Reunion Package" />
+      <PanelHeading title="Sci '96 Reunion Events" />
       <div className="mb-6 text-sm text-zinc-600">
         <EditableText
           value={content.intro}
@@ -743,7 +799,7 @@ function FragmentRows({
   day: { day: string; date: string; items: { time: string; title: string; status: "package" | "friday" | "saturday" | "free" }[] };
 }) {
   const tag: Record<"package" | "friday" | "saturday" | "free", { label: string; cls: string }> = {
-    package: { label: "✓ In Sci '96 Package", cls: "bg-emerald-100 text-emerald-800" },
+    package: { label: "✓ In Sci '96 Events", cls: "bg-emerald-100 text-emerald-800" },
     friday: { label: "Friday Events tab →", cls: "bg-amber-100 text-amber-900" },
     saturday: { label: "Saturday Events tab →", cls: "bg-amber-100 text-amber-900" },
     free: { label: "n/a: Just show up!", cls: "bg-zinc-100 text-zinc-700" },
@@ -790,7 +846,7 @@ function FridayPanel() {
         <EventRow
           name="Trifac Mixer · The Tap House"
           when="Friday evening · downtown Kingston"
-          desc="ArtSci '96, Comm '96, and Sci '96 under one roof. Included in the Sci '96 Package — only purchase here if you skipped the package."
+          desc="ArtSci '96, Comm '96, and Sci '96 under one roof. Included in the Sci '96 Events — only purchase here if you skipped the package."
           price="Included"
           options={["Included with package", "Add à la carte ($45)"]}
         />
@@ -817,16 +873,16 @@ function SaturdayPanel() {
           options={["1 ticket", "2 tickets", "3 tickets", "4 tickets"]}
         />
         <EventRow
-          name="Football Game · Sci '96 Class Block"
+          name="Football Game · Queen's Homecoming"
           when="Sat afternoon · Richardson Stadium"
-          desc="Class block seating. Included in the Sci '96 Package — purchase here only if you skipped the package or need extras for kids."
-          price="Included / +$25"
-          options={["Included with package", "+1 extra ticket", "+2 extra tickets"]}
+          desc="General-admission Homecoming football ticket — separate purchase, not bundled with the Sci '96 Events. When you buy in the Sci '96 block, Queen's seats us together so the whole class is in one section."
+          price="$25 / ticket"
+          options={["1 ticket", "2 tickets", "3 tickets", "4 tickets"]}
         />
         <EventRow
           name="University Club Mixer"
           when="Sat evening · 168 Stuart St"
-          desc="Hors d'oeuvres, cash bar, the Dean dropping by. Included in the Sci '96 Package."
+          desc="Hors d'oeuvres, cash bar, the Dean dropping by. Included in the Sci '96 Events."
           price="Included"
           options={["Included with package", "Add à la carte ($25)"]}
         />
@@ -1022,12 +1078,44 @@ function SwagItemCard({
         </div>
         {editMode && (
           <>
-            <Field label="Image URL" hint="e.g. /swag/hoodie.jpg in /public">
-              <TextInput
-                value={item.image}
-                onChange={(e) => onUpdate({ image: e.target.value })}
-                placeholder="/crest.svg"
-              />
+            <Field label="Product image" hint="Upload from your device — saved to your browser only.">
+              <div className="flex flex-col gap-2">
+                <input
+                  type="file"
+                  accept="image/png,image/jpeg,image/webp,image/svg+xml"
+                  onChange={async (e) => {
+                    const file = e.target.files?.[0];
+                    if (!file) return;
+                    try {
+                      const dataUrl = await imageFileToDataUrl(file, 800, 0.85);
+                      onUpdate({ image: dataUrl });
+                    } catch {
+                      window.alert("Couldn't read that image. Try a smaller PNG or JPEG.");
+                    } finally {
+                      e.target.value = "";
+                    }
+                  }}
+                  className="text-xs file:mr-2 file:cursor-pointer file:rounded file:border file:border-black/15 file:bg-white file:px-2 file:py-1 file:text-xs file:font-medium hover:file:bg-zinc-50"
+                />
+                {item.image.startsWith("data:") ? (
+                  <div className="flex items-center justify-between gap-2 rounded border border-emerald-200 bg-emerald-50 px-2 py-1 text-xs text-emerald-800">
+                    <span>Custom uploaded image</span>
+                    <button
+                      type="button"
+                      onClick={() => onUpdate({ image: "/crest.svg" })}
+                      className="font-semibold underline hover:no-underline"
+                    >
+                      Clear
+                    </button>
+                  </div>
+                ) : (
+                  <TextInput
+                    value={item.image}
+                    onChange={(e) => onUpdate({ image: e.target.value })}
+                    placeholder="/swag/your-image.jpg"
+                  />
+                )}
+              </div>
             </Field>
             <div className="grid grid-cols-3 gap-2">
               <Field label="Logo cx">
