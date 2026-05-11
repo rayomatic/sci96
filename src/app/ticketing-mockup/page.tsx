@@ -173,6 +173,12 @@ function migrateStoredSwag(stored: SwagItemContent[]): SwagItemContent[] {
 const STORAGE_KEY_PKG = "sci96-mockup-package-v9";
 const STORAGE_KEY_SWAG = "sci96-mockup-swag-v22";
 
+// Older storage keys that were bumped during early iteration. If a current-key entry is missing
+// but a prior key has data, recover from the most recent prior key so organizers don't lose edits
+// they made on prod under an older version.
+const PRIOR_PKG_KEYS = Array.from({ length: 8 }, (_, i) => `sci96-mockup-package-v${8 - i}`);
+const PRIOR_SWAG_KEYS = Array.from({ length: 21 }, (_, i) => `sci96-mockup-swag-v${21 - i}`);
+
 /** Read a File as a data URL, downscale via canvas, and return the data URL. Keeps localStorage payloads small. */
 function imageFileToDataUrl(file: File, maxDim = 800, quality = 0.85): Promise<string> {
   return new Promise((resolve, reject) => {
@@ -208,20 +214,34 @@ function useLocalState<T>(
   key: string,
   defaults: T,
   migrate?: (raw: T) => T,
+  priorKeys: readonly string[] = [],
 ): [T, (next: T) => void, () => void] {
   const [value, setValue] = useState<T>(defaults);
   const [hydrated, setHydrated] = useState(false);
   useEffect(() => {
     try {
-      const raw = window.localStorage.getItem(key);
+      let raw = window.localStorage.getItem(key);
+      let recoveredFromKey: string | null = null;
+      if (!raw) {
+        // Fall back to the newest prior key that still has data — recovers edits made under
+        // an older storage version that got bumped during iteration.
+        for (const priorKey of priorKeys) {
+          const priorRaw = window.localStorage.getItem(priorKey);
+          if (priorRaw) {
+            raw = priorRaw;
+            recoveredFromKey = priorKey;
+            break;
+          }
+        }
+      }
       if (raw) {
         const parsed = JSON.parse(raw) as T;
         const final = migrate ? migrate(parsed) : parsed;
         setValue(final);
-        // Persist the migrated shape so future loads are clean.
-        if (migrate) {
+        if (migrate || recoveredFromKey) {
           try {
             window.localStorage.setItem(key, JSON.stringify(final));
+            if (recoveredFromKey) window.localStorage.removeItem(recoveredFromKey);
           } catch {}
         }
       }
@@ -249,11 +269,17 @@ function useLocalState<T>(
 export default function TicketingMockup() {
   const [tab, setTabState] = useState<Tab>("Sci '96 Events");
   const [editMode, setEditMode] = useState(false);
-  const [pkg, setPkg, resetPkg] = useLocalState<PackageContent>(STORAGE_KEY_PKG, DEFAULT_PACKAGE);
+  const [pkg, setPkg, resetPkg] = useLocalState<PackageContent>(
+    STORAGE_KEY_PKG,
+    DEFAULT_PACKAGE,
+    undefined,
+    PRIOR_PKG_KEYS,
+  );
   const [swag, setSwag, resetSwag] = useLocalState<SwagItemContent[]>(
     STORAGE_KEY_SWAG,
     DEFAULT_SWAG,
     migrateStoredSwag,
+    PRIOR_SWAG_KEYS,
   );
 
   // Sync state ← URL on mount and on browser back/forward.
@@ -986,7 +1012,7 @@ function SwagPanel({
     <section>
       <PanelHeading title="Sci '96 Swag" />
       <p className="mb-6 text-sm text-zinc-600">
-        Order closes <strong>September 15, 2026</strong>; no late additions after that. We&rsquo;ll follow up
+        Order closes <strong>September 1, 2026</strong>; no late additions after that. We&rsquo;ll follow up
         with pick up details. <strong>Stickers are included free with any swag order</strong> (Sci &rsquo;96
         crest + Clark Hall Pub die-cut vinyl).
       </p>
