@@ -84,7 +84,7 @@ const DEFAULT_SWAG: SwagItemContent[] = [
     blurb:
       "Champion PowerBlend pullover hoodie in navy blue with the Sci '96 crest and a 'Homecoming 2026' discipline bar on the chest.",
     price: 45,
-    image: "/swag/hoodie.jpg",
+    image: "/swag/hoodie.png",
     sizes: ["S", "M", "L", "XL", "2XL ($50)", "3XL ($50)"],
     sizing: [
       ["SIZE", "S", "M", "L", "XL", "2XL", "3XL"],
@@ -92,13 +92,6 @@ const DEFAULT_SWAG: SwagItemContent[] = [
       ["BODY LENGTH (in)", "27", "28", "29", "30", "31", "32"],
       ["SLEEVE (CB, in)", "36", "36¾", "37½", "38¼", "39", "39⅜"],
     ],
-    bannerOverlay: {
-      cx: "57%",
-      cy: "41%",
-      w: "11%",
-      src: "/swag/hoodie-design.png",
-      alt: "Sci '96 crest with Homecoming 2026 discipline bar",
-    },
   },
   {
     key: "toque",
@@ -108,7 +101,6 @@ const DEFAULT_SWAG: SwagItemContent[] = [
     price: 20,
     image: "/swag/toque.png",
     sizes: ["One size"],
-    crestOverlay: { cx: "50%", cy: "78%", w: "24%" },
   },
   {
     key: "beanie",
@@ -118,7 +110,6 @@ const DEFAULT_SWAG: SwagItemContent[] = [
     price: 20,
     image: "/swag/beanie-no-pom.png",
     sizes: ["One size"],
-    crestOverlay: { cx: "50%", cy: "70%", w: "24%" },
   },
   {
     key: "cap-low",
@@ -126,9 +117,8 @@ const DEFAULT_SWAG: SwagItemContent[] = [
     blurb:
       "YP Classics 6245CM unstructured 6-panel dad hat in navy with buckle closure. Embroidered crest on the front, 'Homecoming 2026' on the back.",
     price: 25,
-    image: "/swag/cap-low-profile.svg",
+    image: "/swag/cap-low-profile.png",
     sizes: ["One size · adjustable buckle"],
-    crestOverlay: { cx: "50%", cy: "44%", w: "16%" },
   },
   {
     key: "cap-high",
@@ -136,9 +126,8 @@ const DEFAULT_SWAG: SwagItemContent[] = [
     blurb:
       "YP Classics 5789M structured 5-panel snapback in navy. Taller crown for bigger heads. Embroidered crest on the front, 'Homecoming 2026' on the back.",
     price: 25,
-    image: "/swag/cap-high-profile.svg",
+    image: "/swag/cap-high-profile.png",
     sizes: ["One size · snapback"],
-    crestOverlay: { cx: "50%", cy: "37%", w: "16%" },
   },
   {
     key: "cap-holo-gold",
@@ -146,10 +135,40 @@ const DEFAULT_SWAG: SwagItemContent[] = [
     blurb:
       "Iridescent gold PU-leather baseball cap with the Sci '96 crest embroidered on the front. The flashy option — sourced separately, supplier and final pricing TBC.",
     price: 35,
-    image: "/swag/cap-holo-gold.jpg",
+    image: "/swag/golden-dome.jpg",
     sizes: ["One size · adjustable"],
   },
 ];
+
+/** Migrate stored swag items so anyone with old image paths or overlays still sees the new mockups. */
+const SWAG_IMAGE_MIGRATIONS: Record<string, string> = {
+  "/swag/hoodie.jpg": "/swag/hoodie.png",
+  "/swag/cap-low-profile.svg": "/swag/cap-low-profile.png",
+  "/swag/cap-high-profile.svg": "/swag/cap-high-profile.png",
+  "/swag/cap-holo-gold.jpg": "/swag/golden-dome.jpg",
+};
+const SWAG_KEYS_WITH_BAKED_CREST = new Set([
+  "hoodie",
+  "toque",
+  "beanie",
+  "cap-low",
+  "cap-high",
+  "cap-holo-gold",
+]);
+
+function migrateStoredSwag(stored: SwagItemContent[]): SwagItemContent[] {
+  return stored.map((item) => {
+    const next: SwagItemContent = { ...item };
+    const remapped = SWAG_IMAGE_MIGRATIONS[item.image];
+    if (remapped) next.image = remapped;
+    // Eleanor's new mockups bake the crest into the image; clear our overlays so they don't double-print.
+    if (SWAG_KEYS_WITH_BAKED_CREST.has(item.key)) {
+      delete next.crestOverlay;
+      delete next.bannerOverlay;
+    }
+    return next;
+  });
+}
 
 const STORAGE_KEY_PKG = "sci96-mockup-package-v9";
 const STORAGE_KEY_SWAG = "sci96-mockup-swag-v22";
@@ -185,15 +204,30 @@ function imageFileToDataUrl(file: File, maxDim = 800, quality = 0.85): Promise<s
   });
 }
 
-function useLocalState<T>(key: string, defaults: T): [T, (next: T) => void, () => void] {
+function useLocalState<T>(
+  key: string,
+  defaults: T,
+  migrate?: (raw: T) => T,
+): [T, (next: T) => void, () => void] {
   const [value, setValue] = useState<T>(defaults);
   const [hydrated, setHydrated] = useState(false);
   useEffect(() => {
     try {
       const raw = window.localStorage.getItem(key);
-      if (raw) setValue(JSON.parse(raw) as T);
+      if (raw) {
+        const parsed = JSON.parse(raw) as T;
+        const final = migrate ? migrate(parsed) : parsed;
+        setValue(final);
+        // Persist the migrated shape so future loads are clean.
+        if (migrate) {
+          try {
+            window.localStorage.setItem(key, JSON.stringify(final));
+          } catch {}
+        }
+      }
     } catch {}
     setHydrated(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [key]);
   const set = (next: T) => {
     setValue(next);
@@ -216,7 +250,11 @@ export default function TicketingMockup() {
   const [tab, setTabState] = useState<Tab>("Sci '96 Events");
   const [editMode, setEditMode] = useState(false);
   const [pkg, setPkg, resetPkg] = useLocalState<PackageContent>(STORAGE_KEY_PKG, DEFAULT_PACKAGE);
-  const [swag, setSwag, resetSwag] = useLocalState<SwagItemContent[]>(STORAGE_KEY_SWAG, DEFAULT_SWAG);
+  const [swag, setSwag, resetSwag] = useLocalState<SwagItemContent[]>(
+    STORAGE_KEY_SWAG,
+    DEFAULT_SWAG,
+    migrateStoredSwag,
+  );
 
   // Sync state ← URL on mount and on browser back/forward.
   useEffect(() => {
