@@ -266,21 +266,63 @@ function useLocalState<T>(
   return [value, set, reset];
 }
 
+type LoadStatus = "loading" | "ready" | "error";
+type SaveStatus = "idle" | "saving" | "saved" | "error";
+
+const PASSWORD_CACHE_KEY = "sci96-mockup-edit-password";
+
 export default function TicketingMockup() {
   const [tab, setTabState] = useState<Tab>("Sci '96 Events");
   const [editMode, setEditMode] = useState(false);
-  const [pkg, setPkg, resetPkg] = useLocalState<PackageContent>(
-    STORAGE_KEY_PKG,
-    DEFAULT_PACKAGE,
-    undefined,
-    PRIOR_PKG_KEYS,
-  );
-  const [swag, setSwag, resetSwag] = useLocalState<SwagItemContent[]>(
-    STORAGE_KEY_SWAG,
-    DEFAULT_SWAG,
-    migrateStoredSwag,
-    PRIOR_SWAG_KEYS,
-  );
+  const [pkg, setPkg] = useState<PackageContent>(DEFAULT_PACKAGE);
+  const [swag, setSwag] = useState<SwagItemContent[]>(DEFAULT_SWAG);
+  const [loadStatus, setLoadStatus] = useState<LoadStatus>("loading");
+  const [saveStatus, setSaveStatus] = useState<SaveStatus>("idle");
+  const [saveError, setSaveError] = useState<string | null>(null);
+
+  // Load content from the server, falling back to localStorage (current or any prior key) if the
+  // server is empty — preserves a committee member's existing in-browser edits as the starting state.
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        const r = await fetch("/api/content", { cache: "no-store" });
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        const data = (await r.json()) as { pkg?: PackageContent; swag?: SwagItemContent[] };
+        if (cancelled) return;
+        const hasServer = data && (data.pkg || (Array.isArray(data.swag) && data.swag.length > 0));
+        if (hasServer) {
+          if (data.pkg) setPkg(data.pkg);
+          if (Array.isArray(data.swag)) setSwag(migrateStoredSwag(data.swag));
+        } else {
+          for (const k of [STORAGE_KEY_PKG, ...PRIOR_PKG_KEYS]) {
+            try {
+              const raw = window.localStorage.getItem(k);
+              if (raw) {
+                setPkg(JSON.parse(raw) as PackageContent);
+                break;
+              }
+            } catch {}
+          }
+          for (const k of [STORAGE_KEY_SWAG, ...PRIOR_SWAG_KEYS]) {
+            try {
+              const raw = window.localStorage.getItem(k);
+              if (raw) {
+                setSwag(migrateStoredSwag(JSON.parse(raw) as SwagItemContent[]));
+                break;
+              }
+            } catch {}
+          }
+        }
+        setLoadStatus("ready");
+      } catch {
+        if (!cancelled) setLoadStatus("error");
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   // Sync state ← URL on mount and on browser back/forward.
   useEffect(() => {
@@ -293,7 +335,7 @@ export default function TicketingMockup() {
     return () => window.removeEventListener("popstate", sync);
   }, []);
 
-  // Wrapper that also writes the URL so any tab is shareable as ?tab=package | ?tab=swag.
+  // Wrapper that also writes the URL so any tab is shareable as ?tab=events | ?tab=swag.
   const setTab = (next: Tab) => {
     setTabState(next);
     const slug = SLUG_BY_TAB[next];
@@ -305,9 +347,61 @@ export default function TicketingMockup() {
   };
 
   const onResetAll = () => {
-    if (window.confirm("Reset Package and Swag content to defaults?")) {
-      resetPkg();
-      resetSwag();
+    if (
+      window.confirm(
+        "Reset Package and Swag content to defaults? You'll still need to click Save changes to push this to everyone.",
+      )
+    ) {
+      setPkg(DEFAULT_PACKAGE);
+      setSwag(DEFAULT_SWAG);
+    }
+  };
+
+  const onSave = async () => {
+    let password = "";
+    try {
+      password = window.localStorage.getItem(PASSWORD_CACHE_KEY) ?? "";
+    } catch {}
+    if (!password) {
+      const entered = window.prompt("Committee edit password:");
+      if (!entered) return;
+      password = entered;
+    }
+    setSaveStatus("saving");
+    setSaveError(null);
+    try {
+      const r = await fetch("/api/content", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          "x-edit-password": password,
+        },
+        body: JSON.stringify({ pkg, swag }),
+      });
+      if (r.status === 401) {
+        try {
+          window.localStorage.removeItem(PASSWORD_CACHE_KEY);
+        } catch {}
+        throw new Error("Wrong password — try again");
+      }
+      if (!r.ok) {
+        let msg = `HTTP ${r.status}`;
+        try {
+          const body = (await r.json()) as { error?: string };
+          if (body.error) msg = body.error;
+        } catch {}
+        throw new Error(msg);
+      }
+      try {
+        window.localStorage.setItem(PASSWORD_CACHE_KEY, password);
+      } catch {}
+      setSaveStatus("saved");
+      window.setTimeout(() => {
+        setSaveStatus((s) => (s === "saved" ? "idle" : s));
+      }, 3000);
+    } catch (e) {
+      setSaveError(e instanceof Error ? e.message : "Save failed");
+      setSaveStatus("error");
     }
   };
 
@@ -318,7 +412,15 @@ export default function TicketingMockup() {
         <div className="mb-4 flex items-center justify-between gap-3">
           <MockupBanner />
         </div>
-        <EditToolbar editMode={editMode} setEditMode={setEditMode} onResetAll={onResetAll} />
+        <EditToolbar
+          editMode={editMode}
+          setEditMode={setEditMode}
+          onResetAll={onResetAll}
+          onSave={onSave}
+          loadStatus={loadStatus}
+          saveStatus={saveStatus}
+          saveError={saveError}
+        />
         <Tabs active={tab} onChange={setTab} />
         <div className="mt-8">
           {tab === "Registrant" && <RegistrantPanel />}
@@ -344,31 +446,66 @@ function EditToolbar({
   editMode,
   setEditMode,
   onResetAll,
+  onSave,
+  loadStatus,
+  saveStatus,
+  saveError,
 }: {
   editMode: boolean;
   setEditMode: (b: boolean) => void;
   onResetAll: () => void;
+  onSave: () => void;
+  loadStatus: LoadStatus;
+  saveStatus: SaveStatus;
+  saveError: string | null;
 }) {
   return (
     <div className="mb-4 flex flex-wrap items-center justify-between gap-3 rounded border border-black/10 bg-zinc-50 px-4 py-2 text-sm">
       <div className="text-zinc-600">
-        {editMode ? (
+        {loadStatus === "loading" ? (
+          <span>Loading latest content…</span>
+        ) : loadStatus === "error" ? (
+          <span className="text-red-700">
+            Couldn&rsquo;t load from server — showing local copy. Saves may not work.
+          </span>
+        ) : editMode ? (
           <span>
-            <strong className="text-amber-700">Edit mode on.</strong> Changes save to your browser only.
+            <strong className="text-amber-700">Edit mode on.</strong> Click <strong>Save changes</strong>{" "}
+            to push your edits to everyone.
           </span>
         ) : (
-          <span>Click <strong>Edit content</strong> to tweak prices, copy, or items in the Package and Swag tabs.</span>
+          <span>
+            Click <strong>Edit content</strong> to tweak prices, copy, or items. Saves are visible to
+            everyone with the link.
+          </span>
+        )}
+        {saveStatus === "saving" && <span className="ml-2 text-zinc-500">Saving…</span>}
+        {saveStatus === "saved" && (
+          <span className="ml-2 font-semibold text-emerald-700">✓ Saved to everyone</span>
+        )}
+        {saveStatus === "error" && saveError && (
+          <span className="ml-2 text-red-700">{saveError}</span>
         )}
       </div>
       <div className="flex items-center gap-2">
         {editMode && (
-          <button
-            type="button"
-            onClick={onResetAll}
-            className="inline-flex h-9 items-center rounded border border-black/15 bg-white px-3 text-xs font-medium text-zinc-700 transition hover:border-black/40"
-          >
-            Reset to defaults
-          </button>
+          <>
+            <button
+              type="button"
+              onClick={onResetAll}
+              className="inline-flex h-9 items-center rounded border border-black/15 bg-white px-3 text-xs font-medium text-zinc-700 transition hover:border-black/40"
+            >
+              Reset to defaults
+            </button>
+            <button
+              type="button"
+              onClick={onSave}
+              disabled={saveStatus === "saving"}
+              className="inline-flex h-9 items-center rounded bg-emerald-600 px-3 text-xs font-semibold text-white transition hover:bg-emerald-700 disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              {saveStatus === "saving" ? "Saving…" : "💾 Save changes"}
+            </button>
+          </>
         )}
         <button
           type="button"
