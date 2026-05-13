@@ -83,9 +83,9 @@ const DEFAULT_SWAG: SwagItemContent[] = [
     name: "Champion S700 Hoodie",
     blurb:
       "Champion PowerBlend pullover hoodie in navy blue with the Sci '96 crest and a 'Homecoming 2026' discipline bar on the chest.",
-    price: 45,
+    price: 50,
     image: "/swag/hoodie.png",
-    sizes: ["S", "M", "L", "XL", "2XL ($50)", "3XL ($50)"],
+    sizes: ["S", "M", "L", "XL", "2XL", "3XL"],
     sizing: [
       ["SIZE", "S", "M", "L", "XL", "2XL", "3XL"],
       ["BODY WIDTH (in)", "20", "22", "24", "26", "28", "30"],
