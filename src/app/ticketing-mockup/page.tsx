@@ -1148,10 +1148,13 @@ function SwagPanel({
   return (
     <section>
       <PanelHeading title="Sci '96 Swag" />
+      <p className="mb-3 text-sm text-zinc-600">
+        Ordering of swag closes on <strong>August 1, 2026</strong>, with pickup in Kingston. No late additions
+        after that. We&rsquo;ll follow up with pick up details via the Sci &rsquo;96 WhatsApp group.
+      </p>
       <p className="mb-6 text-sm text-zinc-600">
-        Order closes <strong>September 1, 2026</strong>; no late additions after that. We&rsquo;ll follow up
-        with pick up details. <strong>Stickers are included free with any swag order</strong> (Sci &rsquo;96
-        crest + Clark Hall Pub die-cut vinyl).
+        <strong>Bonus:</strong> You&rsquo;ll get a 3″ vinyl Sci &rsquo;96 crest sticker and a Clark Hall Pub
+        sticker tucked free into any swag order pickup — no separate order needed.
       </p>
 
       <div className="space-y-6">
@@ -1164,36 +1167,6 @@ function SwagPanel({
             onRemove={() => removeItem(item.key, item.name)}
           />
         ))}
-      </div>
-
-      <div className="mt-8 flex items-start gap-4 rounded border border-black/10 bg-zinc-50 p-4 text-sm text-zinc-700">
-        <div className="flex shrink-0 gap-2">
-          <div className="relative h-16 w-16 rounded border border-black/10 bg-white p-1">
-            <Image
-              src="/swag/sticker-crest.png"
-              alt="Sci '96 crest sticker"
-              fill
-              sizes="64px"
-              className="object-contain p-0.5"
-            />
-          </div>
-          <div className="relative h-16 w-16 rounded border border-black/10 bg-white p-1">
-            <Image
-              src="/swag/sticker-chp.png"
-              alt="Clark Hall Pub sticker"
-              fill
-              sizes="64px"
-              className="object-contain p-0.5"
-            />
-          </div>
-        </div>
-        <div>
-          <p className="font-semibold">Stickers · included with any swag purchase</p>
-          <p className="mt-1">
-            Custom die-cut vinyl by Sira Print, approximately 3″ tall each. You&rsquo;ll get a Sci &rsquo;96
-            crest sticker and a Clark Hall Pub sticker tucked into your swag pickup — no separate order needed.
-          </p>
-        </div>
       </div>
 
       {editMode && (
