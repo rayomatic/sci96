@@ -13,23 +13,23 @@ const geistMono = Geist_Mono({
 });
 
 const description =
-  "Queen's Sci '96 30-year reunion — Homecoming weekend in Kingston, October 16–18, 2026.";
+  "Queen's Sci'96 30-year reunion — Homecoming weekend in Kingston, October 16–18, 2026.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://sci96.ca"),
-  title: "Sci '96 — 30 Years Later · Oct 16–18, 2026",
+  title: "Sci'96 — 30 Years Later · Oct 16–18, 2026",
   description,
   openGraph: {
-    title: "Sci '96 — 30 Years Later",
+    title: "Sci'96 — 30 Years Later",
     description,
     url: "https://sci96.ca",
-    siteName: "Sci '96 Reunion",
+    siteName: "Sci'96 Reunion",
     type: "website",
-    images: [{ url: "/crest.svg", width: 1466, height: 1910, alt: "Sci '96 crest" }],
+    images: [{ url: "/crest.svg", width: 1466, height: 1910, alt: "Sci'96 crest" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sci '96 — 30 Years Later",
+    title: "Sci'96 — 30 Years Later",
     description,
     images: ["/crest.svg"],
   },

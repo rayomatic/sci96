@@ -33,7 +33,7 @@ function Header() {
       <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-3">
         <a href="#top" className="flex items-center gap-2 font-semibold tracking-tight">
           <Image src="/crest.svg" alt="" width={28} height={36} priority />
-          <span>Sci &rsquo;96</span>
+          <span>Sci&rsquo;96</span>
         </a>
         <nav className="hidden gap-6 text-sm text-zinc-600 sm:flex">
           {sections.map((s) => (
@@ -53,7 +53,7 @@ function Hero() {
       <div className="mx-auto flex max-w-5xl flex-col items-center gap-8 px-6 pt-16 pb-20 text-center sm:pt-24 sm:pb-28">
         <Image
           src="/crest.svg"
-          alt="Sci '96 crest"
+          alt="Sci'96 crest"
           width={180}
           height={234}
           priority
@@ -61,7 +61,7 @@ function Hero() {
         />
         <div className="flex flex-col items-center gap-4">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--queens-red)]">
-            Queen&rsquo;s Engineering · Sci &rsquo;96
+            Queen&rsquo;s Engineering · Sci&rsquo;96
           </p>
           <h1 className="text-balance text-4xl font-bold leading-[1.05] tracking-tight sm:text-6xl">
             30 years later. <span className="text-[var(--queens-blue)]">We&rsquo;re coming home.</span>
@@ -71,6 +71,10 @@ function Hero() {
             celebration, and questionable decisions — just like the old days.
           </p>
         </div>
+        <p className="inline-flex items-center gap-2 rounded-full border border-[var(--queens-red)]/30 bg-[var(--queens-red)]/5 px-5 py-2 text-base font-semibold text-[var(--queens-blue)]">
+          🎟️ Tickets on sale{" "}
+          <span className="text-[var(--queens-red)]">June 24, 2026</span>
+        </p>
         <div className="flex flex-col items-center gap-3 sm:flex-row">
           <a
             href={WHATSAPP_URL}
@@ -139,9 +143,9 @@ function Weekend() {
             day="Saturday"
             date="October 17"
             items={[
-              { time: "8:30–11:30 AM", title: "Pancake Breakfast (Queen&rsquo;s)", body: "Bookable time slot for the class year photo. Show up, eat carbs, smile for the camera." },
-              { time: "~10:00 AM", title: "Pancake Kegger", body: "Student house on William near Division — a proud Sci &rsquo;96 tradition." },
-              { time: "Afternoon", title: "Football Game", body: "Your ticket is included in the reunion package. Sci &rsquo;96 class block — show up and be loud." },
+              { time: "8:30–11:30 AM", title: "Queen&rsquo;s Pancake Breakfast", body: "Bookable time slot for the class year photo. Show up, eat carbs, smile for the camera." },
+              { time: "~10:00 AM", title: "Pancake Kegger", body: "Student house on William near Division — a proud Sci&rsquo;96 tradition." },
+              { time: "Afternoon", title: "Football Game", body: "Your ticket is included in the reunion package. Sci&rsquo;96 class block — show up and be loud." },
               { time: "Evening", title: "University Club Mixer", body: "Finger foods, drinks, good company. The Dean is dropping by to say hi." },
             ]}
           />
@@ -192,7 +196,7 @@ function Tickets() {
         </SectionHeading>
 
         <div className="grid gap-6 sm:grid-cols-3">
-          <Stat label="Registration opens" value="June 26, 2026" />
+          <Stat label="Tickets on sale" value="June 24, 2026" />
           <Stat label="Push for early signups" value="Through August" hint="Lock in the good stuff (swag included)." />
           <Stat label="Registration closes" value="October 1, 2026" />
         </div>
@@ -201,6 +205,16 @@ function Tickets() {
           Digital tickets will come through the Homecoming app — download it when the time comes.
           More details on pricing and package contents are coming soon.
         </p>
+
+        <div className="mt-8 flex items-start gap-3 rounded-xl border border-[var(--queens-gold)]/40 bg-[var(--queens-gold)]/10 p-4 text-sm">
+          <span className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--queens-red)]">
+            Swag
+          </span>
+          <p className="text-zinc-700">
+            Don&rsquo;t forget your Sci&rsquo;96 class merch — hoodies, toques, and caps. Orders
+            close <strong>August 1, 2026</strong> and will be ready for pickup at Homecoming.
+          </p>
+        </div>
       </div>
     </section>
   );
@@ -262,12 +276,6 @@ function Stay() {
           <Detail label="Check-in / out" value="3:00 PM / 11:00 AM" />
           <Detail label="Cancellation" value="Free up to 7 days before arrival; after that, 1 night + tax" />
         </div>
-
-        <p className="mt-8 max-w-2xl text-sm text-zinc-600">
-          Bonus: Homecoming falls during Fall Reading Week, so a lot of students will be out of
-          town. We&rsquo;re working with EngSoc to connect us with students renting out their houses
-          for the weekend — more on that soon.
-        </p>
       </div>
     </section>
   );
@@ -329,7 +337,7 @@ function Fund() {
     <section id="fund" className="border-t border-black/10">
       <div className="mx-auto max-w-3xl px-6 py-20 text-center sm:py-24">
         <SectionHeading eyebrow="The Fund" title="Something bigger than a weekend">
-          A small group of classmates is pulling together a Sci &rsquo;96 class fund to leave a
+          A small group of classmates is pulling together a Sci&rsquo;96 class fund to leave a
           mark on Engineering at Queen&rsquo;s — separate from the reunion, but in the same
           spirit. More details coming soon.
         </SectionHeading>
@@ -349,7 +357,7 @@ function Contact() {
           The #1 thing you can do right now
         </h2>
         <p className="max-w-xl text-lg text-white/80">
-          Get on the Sci &rsquo;96 WhatsApp group. That&rsquo;s where the planning chatter, the
+          Get on the Sci&rsquo;96 WhatsApp group. That&rsquo;s where the planning chatter, the
           updates, and the reconnecting actually happen.
         </p>
         <a
@@ -372,7 +380,7 @@ function Footer() {
   return (
     <footer className="border-t border-black/10 bg-[var(--background)]">
       <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-3 px-6 py-8 text-sm text-zinc-500 sm:flex-row">
-        <p>Built by the Sci &rsquo;96 reunion organizing committee.</p>
+        <p>Built by the Sci&rsquo;96 reunion organizing committee.</p>
         <p className="font-semibold tracking-wider text-[var(--queens-red)]">Cha Gheill!</p>
       </div>
     </footer>

@@ -6,10 +6,10 @@ import { useEffect, useState } from "react";
 const TABS = [
   "Registrant",
   "Guest",
-  "Sci '96 Events",
+  "Sci'96 Events",
   "Friday Events",
   "Saturday Events",
-  "Sci '96 Swag",
+  "Sci'96 Swag",
   "Billing",
   "Review",
   "Finish",
@@ -18,16 +18,16 @@ const TABS = [
 type Tab = (typeof TABS)[number];
 
 const QUEENS_BLUE = "#11335d";
-const EDITABLE_TABS: readonly Tab[] = ["Sci '96 Events", "Sci '96 Swag"];
+const EDITABLE_TABS: readonly Tab[] = ["Sci'96 Events", "Sci'96 Swag"];
 
 const TAB_BY_SLUG: Record<string, Tab> = {
-  events: "Sci '96 Events",
-  package: "Sci '96 Events", // backward-compat alias for already-shared links
-  swag: "Sci '96 Swag",
+  events: "Sci'96 Events",
+  package: "Sci'96 Events", // backward-compat alias for already-shared links
+  swag: "Sci'96 Swag",
 };
 const SLUG_BY_TAB: Partial<Record<Tab, string>> = {
-  "Sci '96 Events": "events",
-  "Sci '96 Swag": "swag",
+  "Sci'96 Events": "events",
+  "Sci'96 Swag": "swag",
 };
 
 type PackageContent = {
@@ -41,19 +41,19 @@ type PackageContent = {
 };
 
 const DEFAULT_PACKAGE: PackageContent = {
-  title: "Sci '96 Events",
+  title: "Sci'96 Events",
   price: "$35",
   pricePer: "per person · same price for registrants and guests",
   intro:
-    "The Sci '96 Events bundles the two class-organized events: the Pancake Kegger on Saturday morning and the University Club mixer on Saturday night.",
+    "The Sci'96 Events bundles the two class-organized events: the Pancake Kegger on Saturday morning and the University Club mixer on Saturday night.",
   inclusions: [
     {
-      title: "Sci '96 Pancake Kegger · Saturday ~10 AM",
+      title: "Sci'96 Pancake Kegger · Saturday ~10 AM",
       body:
-        "A proud Sci '96 tradition. Pancakes, kegs, and classmates packed into a student house on William St (near Division). Wander down after the Queen's Pancake Breakfast and class photo.",
+        "A proud Sci'96 tradition. Pancakes, kegs, and classmates packed into a student house on William St (near Division). Wander down after the Queen's Pancake Breakfast and class photo.",
     },
     {
-      title: "Sci '96 University Club Mixer · Saturday 7 PM",
+      title: "Sci'96 University Club Mixer · Saturday 7 PM",
       body:
         "Saturday night at the University Club (168 Stuart) — the anchor of the weekend. Finger foods circulating, cash bar, and the Dean of Engineering stopping in to say hi. Same room we picked for the 20-year — easy to catch up with people you haven't seen in years.",
     },
@@ -71,7 +71,7 @@ type SwagItemContent = {
   image: string;
   sizes: string[];
   sizing?: string[][];
-  /** Overlay the Sci '96 crest on the product photo (mockup). cx/cy = center, w = width — all CSS lengths or percentages. `src` overrides the default /crest.svg (e.g. for the foam-yellow recolour). */
+  /** Overlay the Sci'96 crest on the product photo (mockup). cx/cy = center, w = width — all CSS lengths or percentages. `src` overrides the default /crest.svg (e.g. for the foam-yellow recolour). */
   crestOverlay?: { cx: string; cy: string; w: string; src?: string };
   /** Optional secondary image overlay (e.g. a "Homecoming 2026" ribbon under the crest on the hoodie). */
   bannerOverlay?: { cx: string; cy: string; w: string; src: string; alt?: string };
@@ -82,7 +82,7 @@ const DEFAULT_SWAG: SwagItemContent[] = [
     key: "hoodie",
     name: "Champion S700 Hoodie",
     blurb:
-      "Champion PowerBlend pullover hoodie in navy blue with the Sci '96 crest and a 'Homecoming 2026' discipline bar on the chest.",
+      "Champion PowerBlend pullover hoodie in navy blue with the Sci'96 crest and a 'Homecoming 2026' discipline bar on the chest.",
     price: 50,
     image: "/swag/hoodie.png",
     sizes: ["S", "M", "L", "XL", "2XL", "3XL"],
@@ -97,7 +97,7 @@ const DEFAULT_SWAG: SwagItemContent[] = [
     key: "toque",
     name: "Sportsman Pom Pom Toque",
     blurb:
-      "Cuffed pom-pom toque in navy with the Sci '96 crest embroidered on the fold. Spot each other across Richardson Stadium.",
+      "Cuffed pom-pom toque in navy with the Sci'96 crest embroidered on the fold. Spot each other across Richardson Stadium.",
     price: 20,
     image: "/swag/toque.png",
     sizes: ["One size"],
@@ -106,7 +106,7 @@ const DEFAULT_SWAG: SwagItemContent[] = [
     key: "beanie",
     name: "Cuffed Beanie (No Pom)",
     blurb:
-      "Sportsman SP12 cuffed knit beanie in navy with the Sci '96 crest embroidered on the fold. Same warmth as the pom version, just lower-profile if poms aren't your thing.",
+      "Sportsman SP12 cuffed knit beanie in navy with the Sci'96 crest embroidered on the fold. Same warmth as the pom version, just lower-profile if poms aren't your thing.",
     price: 20,
     image: "/swag/beanie-no-pom.png",
     sizes: ["One size"],
@@ -133,7 +133,7 @@ const DEFAULT_SWAG: SwagItemContent[] = [
     key: "cap-holo-gold",
     name: "Holographic Gold Cap",
     blurb:
-      "Iridescent gold PU-leather baseball cap with the Sci '96 crest embroidered on the front. The flashy option — sourced separately, supplier and final pricing TBC.",
+      "Iridescent gold PU-leather baseball cap with the Sci'96 crest embroidered on the front. The flashy option — sourced separately, supplier and final pricing TBC.",
     price: 35,
     image: "/swag/golden-dome.jpg",
     sizes: ["One size · adjustable"],
@@ -272,7 +272,7 @@ type SaveStatus = "idle" | "saving" | "saved" | "error";
 const PASSWORD_CACHE_KEY = "sci96-mockup-edit-password";
 
 export default function TicketingMockup() {
-  const [tab, setTabState] = useState<Tab>("Sci '96 Events");
+  const [tab, setTabState] = useState<Tab>("Sci'96 Events");
   const [editMode, setEditMode] = useState(false);
   const [pkg, setPkg] = useState<PackageContent>(DEFAULT_PACKAGE);
   const [swag, setSwag] = useState<SwagItemContent[]>(DEFAULT_SWAG);
@@ -425,12 +425,12 @@ export default function TicketingMockup() {
         <div className="mt-8">
           {tab === "Registrant" && <RegistrantPanel />}
           {tab === "Guest" && <GuestPanel />}
-          {tab === "Sci '96 Events" && (
+          {tab === "Sci'96 Events" && (
             <PackagePanel content={pkg} setContent={setPkg} editMode={editMode} />
           )}
           {tab === "Friday Events" && <FridayPanel />}
           {tab === "Saturday Events" && <SaturdayPanel />}
-          {tab === "Sci '96 Swag" && (
+          {tab === "Sci'96 Swag" && (
             <SwagPanel items={swag} setItems={setSwag} editMode={editMode} />
           )}
           {tab === "Billing" && <BillingPanel />}
@@ -531,7 +531,7 @@ function TopBar() {
         <Image src="/crest.svg" alt="" width={28} height={36} />
         <div className="flex flex-col leading-tight">
           <span className="text-sm font-semibold">Queen&rsquo;s Homecoming · Reunion Registration</span>
-          <span className="text-xs text-white/70">Sci &rsquo;96 — 30th Reunion · October 16–18, 2026</span>
+          <span className="text-xs text-white/70">Sci&rsquo;96 — 30th Reunion · October 16–18, 2026</span>
         </div>
       </div>
     </div>
@@ -560,7 +560,7 @@ function Tabs({ active, onChange }: { active: Tab; onChange: (t: Tab) => void })
               type="button"
               disabled={!isEditable}
               aria-disabled={!isEditable}
-              title={isEditable ? undefined : "Mockup: only Sci '96 Events and Sci '96 Swag are interactive"}
+              title={isEditable ? undefined : "Mockup: only Sci'96 Events and Sci'96 Swag are interactive"}
               onClick={() => isEditable && onChange(t)}
               className={
                 "px-3 py-3 text-sm transition " +
@@ -677,13 +677,13 @@ function RegistrantPanel() {
         <Field label="City of residence">
           <TextInput placeholder="Toronto, ON" />
         </Field>
-        <Field label="Were you a member of Sci '96?" required>
+        <Field label="Were you a member of Sci'96?" required>
           <Select defaultValue="">
             <option value="" disabled>
               Select…
             </option>
-            <option>Yes — Sci &rsquo;96 graduate</option>
-            <option>Sci &rsquo;96 (left before grad / different year)</option>
+            <option>Yes — Sci&rsquo;96 graduate</option>
+            <option>Sci&rsquo;96 (left before grad / different year)</option>
             <option>No — but invited as a guest</option>
           </Select>
         </Field>
@@ -719,10 +719,10 @@ function RegistrantPanel() {
 
       <div className="mt-6 flex flex-col gap-2">
         <Checkbox
-          label="I'd like to be listed in the Sci '96 attendee directory shared with classmates."
+          label="I'd like to be listed in the Sci'96 attendee directory shared with classmates."
           hint="Just name + city, never email."
         />
-        <Checkbox label="Please add me to the Sci '96 community WhatsApp group." />
+        <Checkbox label="Please add me to the Sci'96 community WhatsApp group." />
       </div>
     </section>
   );
@@ -762,7 +762,7 @@ function GuestPanel() {
 
       <div className="mt-6 rounded border border-dashed border-black/15 p-4 text-sm text-zinc-600">
         <strong>Note:</strong> Guest packages are priced separately from registrant packages. See the{" "}
-        <em>Sci &rsquo;96 Package</em> tab for pricing.
+        <em>Sci&rsquo;96 Package</em> tab for pricing.
       </div>
     </section>
   );
@@ -838,8 +838,8 @@ function PackagePanel({
       date: "October 17",
       items: [
         { time: "8:30–11:30 AM", title: "Queen's Pancake Breakfast + class photo", status: "free" },
-        { time: "~10:00 AM", title: "Sci '96 Pancake Kegger (William St)", status: "package" },
-        { time: "Afternoon", title: "Football Game · Sci '96 class block", status: "saturday" },
+        { time: "~10:00 AM", title: "Sci'96 Pancake Kegger (William St)", status: "package" },
+        { time: "Afternoon", title: "Football Game · Sci'96 class block", status: "saturday" },
         { time: "7:00 PM", title: "University Club Mixer (168 Stuart)", status: "package" },
       ],
     },
@@ -847,7 +847,7 @@ function PackagePanel({
 
   return (
     <section>
-      <PanelHeading title="Sci '96 Reunion Events" />
+      <PanelHeading title="Sci'96 Reunion Events" />
       <div className="mb-6 text-sm text-zinc-600">
         <EditableText
           value={content.intro}
@@ -990,7 +990,7 @@ function FragmentRows({
   day: { day: string; date: string; items: { time: string; title: string; status: "package" | "friday" | "saturday" | "free" }[] };
 }) {
   const tag: Record<"package" | "friday" | "saturday" | "free", { label: string; cls: string }> = {
-    package: { label: "✓ In Sci '96 Events", cls: "bg-emerald-100 text-emerald-800" },
+    package: { label: "✓ In Sci'96 Events", cls: "bg-emerald-100 text-emerald-800" },
     friday: { label: "Friday Events tab →", cls: "bg-amber-100 text-amber-900" },
     saturday: { label: "Saturday Events tab →", cls: "bg-amber-100 text-amber-900" },
     free: { label: "n/a: Just show up!", cls: "bg-zinc-100 text-zinc-700" },
@@ -1030,14 +1030,14 @@ function FridayPanel() {
         <EventRow
           name="Pancake Kegger Contribution"
           when="Sat morning · William St near Division"
-          desc="Helps cover the keg, groceries, and supplies for the Sci '96 student-house pancake stop. Suggested $5–10/person; pick what you can."
+          desc="Helps cover the keg, groceries, and supplies for the Sci'96 student-house pancake stop. Suggested $5–10/person; pick what you can."
           price="$5–$10"
           options={["$5", "$10", "$15", "$20"]}
         />
         <EventRow
           name="All Faculty '96 Smoker · The Tap House"
           when="Friday 9 PM · The Tap House, 6 Princess St"
-          desc="ArtSci '96, Comm '96, and Sci '96 under one roof — separate Queen's-sold ticket, not bundled in the Sci '96 Events package."
+          desc="ArtSci'96, Comm '96, and Sci'96 under one roof — separate Queen's-sold ticket, not bundled in the Sci'96 Events package."
           price="$45"
           options={["1 ticket", "2 tickets", "3 tickets", "4 tickets"]}
         />
@@ -1059,21 +1059,21 @@ function SaturdayPanel() {
         <EventRow
           name="Queen's Pancake Breakfast"
           when="Sat 8:30–11:30 AM · Queen's"
-          desc="Hosted by the university. Bookable time slot for the Sci '96 class year photo. Show up, eat carbs, smile for the camera."
+          desc="Hosted by the university. Bookable time slot for the Sci'96 class year photo. Show up, eat carbs, smile for the camera."
           price="$15"
           options={["1 ticket", "2 tickets", "3 tickets", "4 tickets"]}
         />
         <EventRow
           name="Football Game · Queen's Homecoming"
           when="Sat afternoon · Richardson Stadium"
-          desc="General-admission Homecoming football ticket — separate purchase, not bundled with the Sci '96 Events. When you buy in the Sci '96 block, Queen's seats us together so the whole class is in one section."
+          desc="General-admission Homecoming football ticket — separate purchase, not bundled with the Sci'96 Events. When you buy in the Sci'96 block, Queen's seats us together so the whole class is in one section."
           price="$25 / ticket"
           options={["1 ticket", "2 tickets", "3 tickets", "4 tickets"]}
         />
         <EventRow
           name="University Club Mixer"
           when="Sat evening · 168 Stuart St"
-          desc="Hors d'oeuvres, cash bar, the Dean dropping by. Included in the Sci '96 Events."
+          desc="Hors d'oeuvres, cash bar, the Dean dropping by. Included in the Sci'96 Events."
           price="Included"
           options={["Included with package", "Add à la carte ($25)"]}
         />
@@ -1147,13 +1147,13 @@ function SwagPanel({
 
   return (
     <section>
-      <PanelHeading title="Sci '96 Swag" />
+      <PanelHeading title="Sci'96 Swag" />
       <p className="mb-3 text-sm text-zinc-600">
         Ordering of swag closes on <strong>August 1, 2026</strong>, with pickup in Kingston. No late additions
-        after that. We&rsquo;ll follow up with pick up details via the Sci &rsquo;96 WhatsApp group.
+        after that. We&rsquo;ll follow up with pick up details via the Sci&rsquo;96 WhatsApp group.
       </p>
       <p className="mb-6 text-sm text-zinc-600">
-        <strong>Bonus:</strong> You&rsquo;ll get a 3″ vinyl Sci &rsquo;96 crest sticker and a Clark Hall Pub
+        <strong>Bonus:</strong> You&rsquo;ll get a 3″ vinyl Sci&rsquo;96 crest sticker and a Clark Hall Pub
         sticker tucked free into any swag order pickup — no separate order needed.
       </p>
 
@@ -1486,12 +1486,12 @@ function BillingPanel() {
 
 function ReviewPanel() {
   const lines = [
-    { label: "Sci '96 Registrant Package", qty: 1, amount: 185 },
+    { label: "Sci'96 Registrant Package", qty: 1, amount: 185 },
     { label: "Guest Package — partner", qty: 1, amount: 155 },
     { label: "Pancake Kegger contribution", qty: 1, amount: 10 },
     { label: "Queen's Pancake Breakfast (×2)", qty: 2, amount: 30 },
-    { label: "Sci '96 Hoodie · Large", qty: 1, amount: 95 },
-    { label: "Sci '96 Toque", qty: 1, amount: 32 },
+    { label: "Sci'96 Hoodie · Large", qty: 1, amount: 95 },
+    { label: "Sci'96 Toque", qty: 1, amount: 32 },
   ];
   const subtotal = lines.reduce((s, l) => s + l.amount, 0);
   const hst = +(subtotal * 0.13).toFixed(2);
@@ -1564,7 +1564,7 @@ function FinishPanel() {
           September.
         </p>
         <p className="mt-4 text-sm">
-          The #1 thing to do next: <strong>join the Sci &rsquo;96 WhatsApp group</strong> if you&rsquo;re not
+          The #1 thing to do next: <strong>join the Sci&rsquo;96 WhatsApp group</strong> if you&rsquo;re not
           already in it.
         </p>
       </div>
