@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 const WHATSAPP_URL = "https://chat.whatsapp.com/L3dalZ1lxe0ISX6mQew8Ba?mode=gi_t";
+const TICKETS_URL = "https://www.queensu.ca/alumni/homecoming";
 
 const sections = [
   { id: "weekend", label: "The Weekend" },
@@ -72,23 +73,25 @@ function Hero() {
           </p>
         </div>
         <p className="inline-flex items-center gap-2 rounded-full border border-[var(--queens-red)]/30 bg-[var(--queens-red)]/5 px-5 py-2 text-base font-semibold text-[var(--queens-blue)]">
-          🎟️ Tickets on sale{" "}
-          <span className="text-[var(--queens-red)]">June 24, 2026</span>
+          🎟️ Homecoming tickets are{" "}
+          <span className="text-[var(--queens-red)]">on sale now</span>
         </p>
         <div className="flex flex-col items-center gap-3 sm:flex-row">
           <a
-            href={WHATSAPP_URL}
+            href={TICKETS_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex h-12 items-center justify-center rounded-full bg-[var(--queens-red)] px-7 text-base font-semibold text-white shadow-sm transition hover:bg-[#94000c]"
           >
-            Join the WhatsApp group
+            🎟️ Buy Homecoming tickets
           </a>
           <a
-            href="#weekend"
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex h-12 items-center justify-center rounded-full border border-black/15 px-7 text-base font-semibold transition hover:border-black/40"
           >
-            See the weekend
+            Join the WhatsApp group
           </a>
         </div>
         <p className="max-w-md text-sm text-zinc-500">
@@ -189,22 +192,58 @@ function Tickets() {
   return (
     <section id="tickets" className="border-t border-black/10">
       <div className="mx-auto max-w-5xl px-6 py-20 sm:py-24">
-        <SectionHeading eyebrow="Tickets" title="One package, all the things">
-          A single ticket package covers all class events plus your football ticket — one easy
-          checkout through the Queen&rsquo;s Homecoming portal. Guest packages available at
-          different pricing.
+        <SectionHeading eyebrow="Tickets" title="Tickets are on sale now">
+          Registration runs through the Queen&rsquo;s Homecoming portal — one checkout. The catch:
+          you have to add each piece yourself, so make sure you select <strong>all four</strong>
+          Sci&rsquo;96 items below or you&rsquo;ll miss something.
         </SectionHeading>
 
-        <div className="grid gap-6 sm:grid-cols-3">
-          <Stat label="Tickets on sale" value="June 24, 2026" />
-          <Stat label="Push for early signups" value="Through August" hint="Lock in the good stuff (swag included)." />
-          <Stat label="Registration closes" value="October 1, 2026" />
+        <a
+          href={TICKETS_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex h-12 items-center justify-center rounded-full bg-[var(--queens-red)] px-7 text-base font-semibold text-white shadow-sm transition hover:bg-[#94000c]"
+        >
+          🎟️ Register on the Queen&rsquo;s Homecoming portal
+        </a>
+
+        <div className="mt-10 rounded-2xl border border-black/10 bg-white p-7">
+          <p className="text-sm font-semibold uppercase tracking-wider text-[var(--queens-red)]">
+            When you register, select all four
+          </p>
+          <ol className="mt-5 flex flex-col gap-4">
+            <CheckItem
+              n="1"
+              title="Friday Trifac Smoker"
+              body="ArtSci, Commerce, and Engineering under one roof to kick off the weekend."
+            />
+            <CheckItem
+              n="2"
+              title={"Saturday Sci’96 Reunion Package"}
+              body="Our class events for Saturday — the heart of the weekend."
+            />
+            <CheckItem
+              n="3"
+              title="Football ticket"
+              body={"Queen’s has said they’ll seat the Sci’96 class together — grab a ticket and sit with your people."}
+            />
+            <CheckItem
+              n="4"
+              title="Swag"
+              body="Hoodies, toques, and caps. Heads up: order by August 1 (see below)."
+            />
+          </ol>
         </div>
 
-        <p className="mt-8 max-w-2xl text-zinc-600">
-          Digital tickets will come through the Homecoming app — download it when the time comes.
-          More details on pricing and package contents are coming soon.
-        </p>
+        <div className="mt-8 grid gap-6 sm:grid-cols-3">
+          <Stat label="Registration" value="On sale now" />
+          <Stat
+            label="Order swag by"
+            value="August 1, 2026"
+            hint={"The Queen’s flow may not flag this date — don’t leave it late."}
+          />
+          <Stat label="Registration closes" value="October 1, 2026" />
+        </div>
 
         <div className="mt-8 flex items-start gap-3 rounded-xl border border-[var(--queens-gold)]/40 bg-[var(--queens-gold)]/10 p-4 text-sm">
           <span className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--queens-red)]">
@@ -212,11 +251,27 @@ function Tickets() {
           </span>
           <p className="text-zinc-700">
             Don&rsquo;t forget your Sci&rsquo;96 class merch — hoodies, toques, and caps. Orders
-            close <strong>August 1, 2026</strong> and will be ready for pickup at Homecoming.
+            close <strong>August 1, 2026</strong> (the Queen&rsquo;s registration flow may not
+            remind you of this date, so don&rsquo;t leave it to the last minute). Pickup is at
+            Homecoming.
           </p>
         </div>
       </div>
     </section>
+  );
+}
+
+function CheckItem({ n, title, body }: { n: string; title: string; body: string }) {
+  return (
+    <li className="flex gap-4">
+      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[var(--queens-red)] text-sm font-bold text-white">
+        {n}
+      </span>
+      <div className="flex flex-col gap-1">
+        <p className="font-semibold">{title}</p>
+        <p className="text-sm text-zinc-600">{body}</p>
+      </div>
+    </li>
   );
 }
 
@@ -341,6 +396,10 @@ function Fund() {
           mark on Engineering at Queen&rsquo;s — separate from the reunion, but in the same
           spirit. More details coming soon.
         </SectionHeading>
+        <p className="mx-auto max-w-2xl text-zinc-600">
+          When you register you&rsquo;ll also see an option to donate to Queen&rsquo;s in the
+          checkout flow. Our dedicated Sci&rsquo;96 fund is a separate effort — more on that soon.
+        </p>
       </div>
     </section>
   );
