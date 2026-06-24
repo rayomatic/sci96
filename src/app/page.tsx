@@ -1,7 +1,8 @@
 import Image from "next/image";
 
 const WHATSAPP_URL = "https://chat.whatsapp.com/L3dalZ1lxe0ISX6mQew8Ba?mode=gi_t";
-const TICKETS_URL = "https://www.queensu.ca/alumni/homecoming";
+const TICKETS_URL =
+  "https://secureca.imodules.com/s/1922/20/interior.aspx?sid=1922&gid=2&pgid=4274&cid=7030&utm_source=hoco100-registration&utm_medium=landing-page&utm_campaign=2026-adv-hoco100&utm_content=encompass-registrationhoco100";
 
 const sections = [
   { id: "weekend", label: "The Weekend" },
