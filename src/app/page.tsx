@@ -147,9 +147,9 @@ function Weekend() {
             day="Saturday"
             date="October 17"
             items={[
-              { time: "8:30–11:30 AM", title: "Queen&rsquo;s Pancake Breakfast", body: "Bookable time slot for the class year photo. Show up, eat carbs, smile for the camera." },
-              { time: "~10:00 AM", title: "Pancake Kegger", body: "Student house on William near Division — a proud Sci&rsquo;96 tradition." },
-              { time: "Afternoon", title: "Football Game", body: "Your ticket is included in the reunion package. Sci&rsquo;96 class block — show up and be loud." },
+              { time: "8:30–11:30 AM", title: "Queen’s Pancake Breakfast", body: "Bookable time slot for the class year photo. Show up, eat carbs, smile for the camera." },
+              { time: "~10:00 AM", title: "Pancake Kegger", body: "Student house on William near Division — a proud Sci’96 tradition." },
+              { time: "Afternoon", title: "Football Game", body: "Your ticket is included in the reunion package. Sci’96 class block — show up and be loud." },
               { time: "Evening", title: "University Club Mixer", body: "Finger foods, drinks, good company. The Dean is dropping by to say hi." },
             ]}
           />
@@ -236,26 +236,13 @@ function Tickets() {
           </ol>
         </div>
 
-        <div className="mt-8 grid gap-6 sm:grid-cols-3">
-          <Stat label="Registration" value="On sale now" />
+        <div className="mt-8 grid gap-6 sm:grid-cols-2">
           <Stat
             label="Order swag by"
             value="August 1, 2026"
             hint={"The Queen’s flow may not flag this date — don’t leave it late."}
           />
           <Stat label="Registration closes" value="October 1, 2026" />
-        </div>
-
-        <div className="mt-8 flex items-start gap-3 rounded-xl border border-[var(--queens-gold)]/40 bg-[var(--queens-gold)]/10 p-4 text-sm">
-          <span className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--queens-red)]">
-            Swag
-          </span>
-          <p className="text-zinc-700">
-            Don&rsquo;t forget your Sci&rsquo;96 class merch — hoodies, toques, and caps. Orders
-            close <strong>August 1, 2026</strong> (the Queen&rsquo;s registration flow may not
-            remind you of this date, so don&rsquo;t leave it to the last minute). Pickup is at
-            Homecoming.
-          </p>
         </div>
       </div>
     </section>
@@ -414,11 +401,12 @@ function Contact() {
           Stay in Touch
         </p>
         <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-          The #1 thing you can do right now
+          Got your tickets? Now stay in the loop
         </h2>
         <p className="max-w-xl text-lg text-white/80">
-          Get on the Sci&rsquo;96 WhatsApp group. That&rsquo;s where the planning chatter, the
-          updates, and the reconnecting actually happen.
+          Buying your tickets is the big one — but don&rsquo;t stop there. Get on the Sci&rsquo;96
+          WhatsApp group, where the planning chatter, the updates, and the reconnecting actually
+          happen.
         </p>
         <a
           href={WHATSAPP_URL}
