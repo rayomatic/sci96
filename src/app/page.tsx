@@ -73,7 +73,7 @@ function Hero() {
             celebration, and questionable decisions — just like the old days.
           </p>
         </div>
-        <p className="inline-flex items-center gap-2 rounded-full border border-[var(--queens-red)]/30 bg-[var(--queens-red)]/5 px-5 py-2 text-base font-semibold text-[var(--queens-blue)]">
+        <p className="inline-flex items-center gap-2 text-base font-semibold text-[var(--queens-blue)]">
           🎟️ Homecoming tickets are{" "}
           <span className="text-[var(--queens-red)]">on sale now</span>
         </p>
