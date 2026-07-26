@@ -140,7 +140,7 @@ function Weekend() {
             items={[
               { time: "12:00 PM", title: "Ritual at Clark Hall Pub", body: "Where it all begins. Always." },
               { time: "3:00 PM", title: "Re-entry at Clark — or regroup at the Toucan", body: "If the line is too long, you know where to find us." },
-              { time: "Evening", title: "Trifac Mixer · The Tap House", body: "ArtSci, Commerce, and Engineering all under one roof." },
+              { time: "Evening", title: "Trifac Mixer · The Tap House", body: "ArtSci, Commerce, and Engineering all under one roof. Now sold out — if you have your ticket, you’re in." },
             ]}
           />
           <DayCard
@@ -195,8 +195,9 @@ function Tickets() {
       <div className="mx-auto max-w-5xl px-6 py-20 sm:py-24">
         <SectionHeading eyebrow="Tickets" title="Tickets are on sale now">
           Registration runs through the Queen&rsquo;s Homecoming portal — one checkout. The catch:
-          you have to add each piece yourself, so make sure you select <strong>all four</strong>
-          Sci&rsquo;96 items below or you&rsquo;ll miss something.
+          you have to add each piece yourself, so make sure you select every Sci&rsquo;96 item
+          below or you&rsquo;ll miss something. Two heads up: the <strong>Trifac Smoker is sold
+          out</strong>, and <strong>swag orders close August 1</strong> — days away.
         </SectionHeading>
 
         <a
@@ -216,7 +217,8 @@ function Tickets() {
             <CheckItem
               n="1"
               title="Friday Trifac Smoker"
-              body="ArtSci, Commerce, and Engineering under one roof to kick off the weekend."
+              body="ArtSci, Commerce, and Engineering under one roof to kick off the weekend. Sold out — if you already grabbed yours, you’re set."
+              badge="Sold out"
             />
             <CheckItem
               n="2"
@@ -231,7 +233,8 @@ function Tickets() {
             <CheckItem
               n="4"
               title="Swag"
-              body="Hoodies, toques, and caps. Heads up: order by August 1 (see below)."
+              body="Hoodies, toques, and caps. The deadline is real: order by August 1 or you’re out of luck."
+              badge="Order by Aug 1"
             />
           </ol>
         </div>
@@ -240,7 +243,8 @@ function Tickets() {
           <Stat
             label="Order swag by"
             value="August 1, 2026"
-            hint={"The Queen’s flow may not flag this date — don’t leave it late."}
+            hint={"That’s days away. The Queen’s flow may not flag this date — don’t leave it late."}
+            urgent
           />
           <Stat label="Registration closes" value="October 1, 2026" />
         </div>
@@ -249,25 +253,62 @@ function Tickets() {
   );
 }
 
-function CheckItem({ n, title, body }: { n: string; title: string; body: string }) {
+function CheckItem({
+  n,
+  title,
+  body,
+  badge,
+}: {
+  n: string;
+  title: string;
+  body: string;
+  badge?: string;
+}) {
   return (
     <li className="flex gap-4">
       <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[var(--queens-red)] text-sm font-bold text-white">
         {n}
       </span>
       <div className="flex flex-col gap-1">
-        <p className="font-semibold">{title}</p>
+        <p className="font-semibold">
+          {title}
+          {badge ? (
+            <span className="ml-2 inline-flex items-center rounded-full bg-[var(--queens-red)] px-2.5 py-0.5 align-middle text-xs font-bold uppercase tracking-wider text-white">
+              {badge}
+            </span>
+          ) : null}
+        </p>
         <p className="text-sm text-zinc-600">{body}</p>
       </div>
     </li>
   );
 }
 
-function Stat({ label, value, hint }: { label: string; value: string; hint?: string }) {
+function Stat({
+  label,
+  value,
+  hint,
+  urgent,
+}: {
+  label: string;
+  value: string;
+  hint?: string;
+  urgent?: boolean;
+}) {
   return (
-    <div className="rounded-2xl border border-black/10 bg-white p-6">
+    <div
+      className={`rounded-2xl border p-6 ${
+        urgent ? "border-[var(--queens-red)]/40 bg-[var(--queens-red)]/5" : "border-black/10 bg-white"
+      }`}
+    >
       <p className="text-xs font-semibold uppercase tracking-wider text-zinc-500">{label}</p>
-      <p className="mt-2 text-xl font-bold text-[var(--queens-blue)]">{value}</p>
+      <p
+        className={`mt-2 text-xl font-bold ${
+          urgent ? "text-[var(--queens-red)]" : "text-[var(--queens-blue)]"
+        }`}
+      >
+        {value}
+      </p>
       {hint ? <p className="mt-2 text-sm text-zinc-600">{hint}</p> : null}
     </div>
   );
@@ -287,27 +328,28 @@ function Stay() {
             Heads up
           </span>
           <p className="text-zinc-700">
-            Both blocks are held until <strong>August 31, 2026</strong>. After that, rooms get
-            released back to the public at whatever the going rate is. Book early.
+            Only <strong>8 rooms left</strong> — 4 in each hotel — and every remaining room has{" "}
+            <strong>two queen beds</strong>. Blocks are held until <strong>August 31, 2026</strong>;
+            after that, anything left goes back to the public at whatever the going rate is. Book now.
           </p>
         </div>
 
         <div className="grid gap-6 md:grid-cols-2">
           <HotelCard
             name="Comfort Suites"
-            roomType="Double-queen rooms"
+            roomType="Two-queen-bed rooms"
             rate="$209 / night"
             phone="343-477-0280"
             link="https://www.choicehotels.com/reservations/groups/AJ83J0"
-            inventory="10 rooms"
+            inventory="Only 4 rooms left"
           />
           <HotelCard
             name="Quality Inn & Conference Centre"
-            roomType="Single king rooms"
+            roomType="Two-queen-bed rooms"
             rate="$189 / night"
             phone="613-546-3661"
             link="https://www.choicehotels.com/reservations/groups/VX25T9"
-            inventory="10 rooms"
+            inventory="Only 4 rooms left"
           />
         </div>
 
@@ -343,7 +385,9 @@ function HotelCard({
     <article className="flex flex-col gap-5 rounded-2xl border border-black/10 bg-[var(--background)] p-7">
       <header className="flex flex-col gap-1">
         <h3 className="text-xl font-bold text-[var(--queens-blue)]">{name}</h3>
-        <p className="text-sm text-zinc-600">{roomType} · {inventory} held</p>
+        <p className="text-sm text-zinc-600">
+          {roomType} · <span className="font-semibold text-[var(--queens-red)]">{inventory}</span>
+        </p>
       </header>
       <p className="text-3xl font-bold tracking-tight">{rate}</p>
       <div className="flex flex-col gap-2 text-sm">
