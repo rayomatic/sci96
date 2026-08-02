@@ -3,12 +3,15 @@ import Image from "next/image";
 const WHATSAPP_URL = "https://chat.whatsapp.com/L3dalZ1lxe0ISX6mQew8Ba?mode=gi_t";
 const TICKETS_URL =
   "https://secureca.imodules.com/s/1922/20/interior.aspx?sid=1922&gid=2&pgid=4274&cid=7030&utm_source=hoco100-registration&utm_medium=landing-page&utm_campaign=2026-adv-hoco100&utm_content=encompass-registrationhoco100";
+const DONATE_URL = "https://givetoqueens.ca/sc96fall26";
+const PRESENTATION_URL =
+  "https://queensuca-my.sharepoint.com/:p:/g/personal/kc141_queensu_ca/IQCzhpUSuDeyQbZwmcxZc3l-AfM0CcBOlV1DZTJIWL025ac?rtime=BXcj2cnw3kg";
 
 const sections = [
   { id: "weekend", label: "The Weekend" },
   { id: "tickets", label: "Tickets" },
   { id: "stay", label: "Stay" },
-  { id: "fund", label: "The Fund" },
+  { id: "fund", label: "Forever Fund" },
   { id: "contact", label: "Stay in Touch" },
 ];
 
@@ -422,16 +425,81 @@ function Detail({ label, value }: { label: string; value: string }) {
 function Fund() {
   return (
     <section id="fund" className="border-t border-black/10">
-      <div className="mx-auto max-w-3xl px-6 py-20 text-center sm:py-24">
-        <SectionHeading eyebrow="The Fund" title="Something bigger than a weekend">
-          A small group of classmates is pulling together a Sci&rsquo;96 class fund to leave a
-          mark on Engineering at Queen&rsquo;s — separate from the reunion, but in the same
-          spirit. More details coming soon.
+      <div className="mx-auto max-w-5xl px-6 py-20 sm:py-24">
+        <SectionHeading eyebrow="Our Class Legacy" title="The Science &rsquo;96 Forever Fund">
+          For most of us, it was what happened outside the classroom — the clubs, teams,
+          projects, and late-night design sessions — that made Queen&rsquo;s unforgettable.
+          The Science &rsquo;96 Forever Fund is our class legacy: a permanent endowment
+          supporting student activities and programming in Smith Engineering, so today&rsquo;s
+          students get the same transformative experiences we did.
         </SectionHeading>
-        <p className="mx-auto max-w-2xl text-zinc-600">
-          When you register you&rsquo;ll also see an option to donate to Queen&rsquo;s in the
-          checkout flow. Our dedicated Sci&rsquo;96 fund is a separate effort — more on that soon.
-        </p>
+
+        <Image
+          src="/class-photo.jpg"
+          alt="Sci'96 classmates in their Applied Science '96 jackets"
+          width={1600}
+          height={1110}
+          className="mb-10 h-auto w-full rounded-2xl border border-black/10"
+        />
+
+        <div className="rounded-2xl border border-black/10 bg-white p-7">
+          <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
+            <p className="text-3xl font-bold tracking-tight text-[var(--queens-blue)]">
+              $125,000{" "}
+              <span className="text-base font-semibold text-zinc-500">raised so far</span>
+            </p>
+            <p className="text-sm font-semibold text-zinc-600">
+              Goal: $250,000 by the end of Homecoming weekend
+            </p>
+          </div>
+          <div className="mt-4 h-3 overflow-hidden rounded-full bg-black/10">
+            <div className="h-full w-1/2 rounded-full bg-[var(--queens-red)]" />
+          </div>
+          <p className="mt-4 text-sm text-zinc-600">
+            We&rsquo;re halfway there. $250,000 establishes the fund as a permanent endowment —
+            and the campaign continues with another $250,000 committed over the following five
+            years. Every gift brings us closer to a lasting source of support for Smith
+            Engineering students, for generations.
+          </p>
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+            <a
+              href={DONATE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex h-12 items-center justify-center rounded-full bg-[var(--queens-red)] px-7 text-base font-semibold text-white shadow-sm transition hover:bg-[#94000c]"
+            >
+              Give now
+            </a>
+            <a
+              href={PRESENTATION_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex h-12 items-center justify-center rounded-full border border-black/15 px-7 text-base font-semibold transition hover:border-black/40"
+            >
+              View the presentation
+            </a>
+          </div>
+        </div>
+
+        <div className="mt-10 flex flex-col items-start gap-4 rounded-2xl border border-black/10 bg-[var(--background)] p-7 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-col gap-1">
+            <p className="text-sm font-semibold uppercase tracking-wider text-[var(--queens-red)]">
+              Want to talk it over first?
+            </p>
+            <p className="max-w-xl text-zinc-600">
+              A team of classmate outreach captains is leading the campaign. Join the
+              Sci&rsquo;96 WhatsApp group to learn more about giving and connect with them.
+            </p>
+          </div>
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex h-12 shrink-0 items-center justify-center rounded-full border border-black/15 px-7 text-base font-semibold transition hover:border-black/40"
+          >
+            Join the WhatsApp group
+          </a>
+        </div>
       </div>
     </section>
   );
