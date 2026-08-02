@@ -428,7 +428,7 @@ function Fund() {
       <div className="mx-auto max-w-5xl px-6 py-20 sm:py-24">
         <SectionHeading eyebrow="Our Class Legacy" title="The Science &rsquo;96 Forever Fund">
           For most of us, it was what happened outside the classroom — the clubs, teams,
-          projects, and late-night design sessions — that made Queen&rsquo;s unforgettable.
+          and other extra-curricular organizations — that made Queen&rsquo;s unforgettable.
           The Science &rsquo;96 Forever Fund is our class legacy: a permanent endowment
           supporting student activities and programming in Smith Engineering, so today&rsquo;s
           students get the same transformative experiences we did.
