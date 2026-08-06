@@ -216,7 +216,7 @@ function Tickets() {
 
         <div className="mt-10 rounded-2xl border border-black/10 bg-white p-7">
           <p className="text-sm font-semibold uppercase tracking-wider text-[var(--queens-red)]">
-            When you register, select all four
+            When you register, select what&rsquo;s still available
           </p>
           <ol className="mt-5 flex flex-col gap-4">
             <CheckItem
