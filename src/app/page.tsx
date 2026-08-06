@@ -1,6 +1,8 @@
 import Image from "next/image";
 
 const WHATSAPP_URL = "https://chat.whatsapp.com/L3dalZ1lxe0ISX6mQew8Ba?mode=gi_t";
+const FUND_WHATSAPP_URL =
+  "https://chat.whatsapp.com/HBhuSKDGiSmFZvh2raB0qC?s=hd&p=i&mlu=0&ilr=0&amv=2";
 const TICKETS_URL =
   "https://secureca.imodules.com/s/1922/20/interior.aspx?sid=1922&gid=2&pgid=4274&cid=7030&utm_source=hoco100-registration&utm_medium=landing-page&utm_campaign=2026-adv-hoco100&utm_content=encompass-registrationhoco100";
 const DONATE_URL = "https://givetoqueens.ca/sc96fall26";
@@ -200,7 +202,7 @@ function Tickets() {
           Registration runs through the Queen&rsquo;s Homecoming portal — one checkout. The catch:
           you have to add each piece yourself, so make sure you select every Sci&rsquo;96 item
           below or you&rsquo;ll miss something. Two heads up: the <strong>Trifac Smoker is sold
-          out</strong>, and <strong>swag orders close August 1</strong> — days away.
+          out</strong>, and <strong>the swag order deadline has passed</strong>.
         </SectionHeading>
 
         <a
@@ -236,18 +238,17 @@ function Tickets() {
             <CheckItem
               n="4"
               title="Swag"
-              body="Hoodies, toques, and caps. The deadline is real: order by August 1 or you’re out of luck."
-              badge="Order by Aug 1"
+              body="Hoodies, toques, and caps. Orders closed August 1 — if you got yours in before the deadline, you’re set."
+              badge="Orders closed"
             />
           </ol>
         </div>
 
         <div className="mt-8 grid gap-6 sm:grid-cols-2">
           <Stat
-            label="Order swag by"
+            label="Swag orders closed"
             value="August 1, 2026"
-            hint={"That’s days away. The Queen’s flow may not flag this date — don’t leave it late."}
-            urgent
+            hint={"The deadline has passed — swag can no longer be added to your registration."}
           />
           <Stat label="Registration closes" value="October 1, 2026" />
         </div>
@@ -476,7 +477,7 @@ function Fund() {
               rel="noopener noreferrer"
               className="inline-flex h-12 items-center justify-center rounded-full border border-black/15 px-7 text-base font-semibold transition hover:border-black/40"
             >
-              View the presentation
+              Learn more
             </a>
           </div>
         </div>
@@ -492,7 +493,7 @@ function Fund() {
             </p>
           </div>
           <a
-            href={WHATSAPP_URL}
+            href={FUND_WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex h-12 shrink-0 items-center justify-center rounded-full border border-black/15 px-7 text-base font-semibold transition hover:border-black/40"
