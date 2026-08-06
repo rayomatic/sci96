@@ -145,7 +145,7 @@ function Weekend() {
             items={[
               { time: "12:00 PM", title: "Ritual at Clark Hall Pub", body: "Where it all begins. Always." },
               { time: "3:00 PM", title: "Re-entry at Clark — or regroup at the Toucan", body: "If the line is too long, you know where to find us." },
-              { time: "Evening", title: "Trifac Mixer · The Tap House", body: "ArtSci, Commerce, and Engineering all under one roof. Now sold out — if you have your ticket, you’re in." },
+              { time: "Evening", title: "Trifac Mixer · The Merchant Tap House", href: "https://www.merchanttaphouse.com/", body: "ArtSci, Commerce, and Engineering all under one roof. Now sold out — if you have your ticket, you’re in." },
             ]}
           />
           <DayCard
@@ -171,7 +171,7 @@ function DayCard({
 }: {
   day: string;
   date: string;
-  items: { time: string; title: string; body: string }[];
+  items: { time: string; title: string; body: string; href?: string }[];
 }) {
   return (
     <article className="flex flex-col gap-5 rounded-2xl border border-black/10 bg-[var(--background)] p-7">
@@ -185,7 +185,20 @@ function DayCard({
             <p className="font-mono text-xs uppercase tracking-wider text-[var(--queens-red)]">
               {it.time}
             </p>
-            <p className="font-semibold">{it.title}</p>
+            <p className="font-semibold">
+              {it.href ? (
+                <a
+                  href={it.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline decoration-black/30 underline-offset-4 transition hover:decoration-black"
+                >
+                  {it.title}
+                </a>
+              ) : (
+                it.title
+              )}
+            </p>
             <p className="text-sm text-zinc-600">{it.body}</p>
           </li>
         ))}

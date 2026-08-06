@@ -830,7 +830,7 @@ function PackagePanel({
       date: "October 16",
       items: [
         { time: "12:00 PM", title: "Ritual at Clark Hall Pub", status: "free" },
-        { time: "9:00 PM", title: "All Faculty '96 Smoker · The Tap House (6 Princess St)", status: "friday" },
+        { time: "9:00 PM", title: "All Faculty '96 Smoker · The Merchant Tap House (6 Princess St)", status: "friday" },
       ],
     },
     {
@@ -1035,8 +1035,8 @@ function FridayPanel() {
           options={["$5", "$10", "$15", "$20"]}
         />
         <EventRow
-          name="All Faculty '96 Smoker · The Tap House"
-          when="Friday 9 PM · The Tap House, 6 Princess St"
+          name="All Faculty '96 Smoker · The Merchant Tap House"
+          when="Friday 9 PM · The Merchant Tap House, 6 Princess St"
           desc="ArtSci'96, Comm '96, and Sci'96 under one roof — separate Queen's-sold ticket, not bundled in the Sci'96 Events package."
           price="$45"
           options={["1 ticket", "2 tickets", "3 tickets", "4 tickets"]}
