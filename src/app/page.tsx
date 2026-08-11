@@ -7,7 +7,7 @@ const TICKETS_URL =
   "https://secureca.imodules.com/s/1922/20/interior.aspx?sid=1922&gid=2&pgid=4274&cid=7030&utm_source=hoco100-registration&utm_medium=landing-page&utm_campaign=2026-adv-hoco100&utm_content=encompass-registrationhoco100";
 const DONATE_URL = "https://givetoqueens.ca/sc96fall26";
 const PRESENTATION_URL =
-  "https://queensuca-my.sharepoint.com/:p:/g/personal/kc141_queensu_ca/IQCzhpUSuDeyQbZwmcxZc3l-AfM0CcBOlV1DZTJIWL025ac?rtime=BXcj2cnw3kg";
+  "https://click.advancement.queensu.ca/?qs=ABB7InYiOjEsImQiOjQ5NjB9AA0AAAAAAN0UIdh0cPy267noq4XiaX0I9tqx-fMUSUwpTFJaSisFJ0PLAjdWVtD1G9ziQPfWsQ91H2DvPZAZltBqI6CBNKLn-ni6capUrco";
 
 const sections = [
   { id: "weekend", label: "The Weekend" },
