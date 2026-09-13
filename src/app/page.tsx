@@ -1,6 +1,7 @@
 import Image from "next/image";
 
-const WHATSAPP_URL = "https://chat.whatsapp.com/L3dalZ1lxe0ISX6mQew8Ba?mode=gi_t";
+const WHATSAPP_MAILTO =
+  "mailto:Sci96reunion@gmail.com?subject=Add%20me%20to%20the%20Sci%20%2796%20WhatsApp%20group&body=Hi%21%20Please%20add%20me%20to%20the%20Sci%20%2796%20WhatsApp%20group.%0A%0AName%3A%20%0AWhatsApp%20mobile%20number%3A%20%0A";
 const FUND_WHATSAPP_URL =
   "https://chat.whatsapp.com/HBhuSKDGiSmFZvh2raB0qC?s=hd&p=i&mlu=0&ilr=0&amv=2";
 const TICKETS_URL =
@@ -92,9 +93,7 @@ function Hero() {
             🎟️ Buy Homecoming tickets
           </a>
           <a
-            href={WHATSAPP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+            href={WHATSAPP_MAILTO}
             className="inline-flex h-12 items-center justify-center rounded-full border border-black/15 px-7 text-base font-semibold transition hover:border-black/40"
           >
             Join the WhatsApp group
@@ -102,7 +101,8 @@ function Hero() {
         </div>
         <p className="max-w-md text-sm text-zinc-500">
           The WhatsApp group is where it&rsquo;s all happening — updates, planning chatter, and
-          reconnecting with classmates you haven&rsquo;t talked to in way too long.
+          reconnecting with classmates you haven&rsquo;t talked to in way too long. To keep the
+          spammers out, we add people by email — just hit the button and send.
         </p>
       </div>
     </section>
@@ -536,15 +536,15 @@ function Contact() {
           happen.
         </p>
         <a
-          href={WHATSAPP_URL}
-          target="_blank"
-          rel="noopener noreferrer"
+          href={WHATSAPP_MAILTO}
           className="inline-flex h-12 items-center justify-center rounded-full bg-white px-7 text-base font-semibold text-[var(--queens-blue)] shadow-sm transition hover:bg-[var(--queens-gold)]"
         >
           Join the WhatsApp group
         </a>
         <p className="text-sm text-white/60">
-          This site is reaching most of the class, but not everyone — spread the word.
+          The button opens an email to Sci96reunion@gmail.com — we add people by hand to keep
+          the spammers out. This site is reaching most of the class, but not everyone — spread
+          the word.
         </p>
       </div>
     </section>
