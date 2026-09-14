@@ -7,6 +7,7 @@ const RITUAL = new Date(2026, 9, 16, 12, 0, 0);
 // Hide the banner after the weekend wraps (end of Sun Oct 18)
 const WEEKEND_END = new Date(2026, 9, 19, 0, 0, 0);
 
+// Styled after the Clark Hall Pub logo: bright yellow, white, heavy black italic type
 export default function CountdownBanner() {
   const [now, setNow] = useState<Date | null>(null);
 
@@ -21,22 +22,25 @@ export default function CountdownBanner() {
   const ms = RITUAL.getTime() - now.getTime();
 
   return (
-    <div className="border-b border-black/10 bg-[var(--queens-blue)] px-6 py-5 text-center text-[var(--queens-gold)]">
+    <div className="border-b-4 border-black bg-[#ffe100] px-6 py-5 text-center text-black">
       {ms > 0 ? (
-        <div className="flex flex-col items-center gap-1">
-          <div className="flex items-end justify-center gap-4 sm:gap-7">
+        <div className="flex flex-col items-center gap-1.5">
+          <div className="flex flex-wrap items-end justify-center gap-x-4 gap-y-2 sm:gap-x-6">
             <CountUnit value={Math.floor(ms / 86400000)} label="days" />
             <Sep />
             <CountUnit value={Math.floor((ms % 86400000) / 3600000)} label="hours" />
             <Sep />
             <CountUnit value={Math.floor((ms % 3600000) / 60000)} label="minutes" />
+            <span className="pb-4 text-3xl font-black italic tracking-tight sm:pb-5 sm:text-5xl">
+              until&nbsp;Ritual!
+            </span>
           </div>
-          <p className="text-lg font-bold tracking-tight sm:text-xl">
-            until Ritual! 🍻 Friday Oct 16 · 12 noon · Clark Hall Pub
+          <p className="text-base font-bold italic sm:text-lg">
+            Friday Oct 16 · 12 noon · Clark Hall Pub 🍻
           </p>
         </div>
       ) : (
-        <p className="text-2xl font-extrabold sm:text-3xl">
+        <p className="text-2xl font-black italic sm:text-3xl">
           Ritual is ON — see you at Clark! 🍻
         </p>
       )}
@@ -47,10 +51,10 @@ export default function CountdownBanner() {
 function CountUnit({ value, label }: { value: number; label: string }) {
   return (
     <div className="flex flex-col items-center">
-      <span className="text-6xl font-extrabold leading-none tabular-nums sm:text-8xl">
+      <span className="text-6xl font-black italic leading-none tracking-tight tabular-nums sm:text-8xl">
         {value}
       </span>
-      <span className="mt-1 text-xs font-bold uppercase tracking-[0.2em] sm:text-sm">
+      <span className="mt-1 text-xs font-black uppercase italic tracking-[0.2em] sm:text-sm">
         {label}
       </span>
     </div>
@@ -59,6 +63,6 @@ function CountUnit({ value, label }: { value: number; label: string }) {
 
 function Sep() {
   return (
-    <span className="pb-5 text-4xl font-extrabold opacity-40 sm:pb-7 sm:text-6xl">:</span>
+    <span className="pb-5 text-4xl font-black italic opacity-30 sm:pb-7 sm:text-6xl">:</span>
   );
 }
