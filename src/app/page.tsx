@@ -77,13 +77,12 @@ function Hero() {
             30 years later. <span className="text-[var(--queens-blue)]">We&rsquo;re coming home.</span>
           </h1>
           <p className="max-w-xl text-balance text-lg text-zinc-600 sm:text-xl">
-            Homecoming weekend in Kingston · <strong>October 16–18, 2026</strong>. Nostalgia,
-            celebration, and questionable decisions — just like the old days.
+            Homecoming weekend in Kingston · <strong>October 16–18, 2026</strong>.
           </p>
         </div>
         <p className="inline-flex items-center gap-2 text-base font-semibold text-[var(--queens-blue)]">
-          🎟️ Homecoming tickets are{" "}
-          <span className="text-[var(--queens-red)]">on sale now</span>
+          It&rsquo;s not too late!{" "}
+          <span className="text-[var(--queens-red)]">Join ~150 of us for an amazing weekend</span>
         </p>
         <div className="flex flex-col items-center gap-3 sm:flex-row">
           <a
