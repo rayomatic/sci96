@@ -30,10 +30,12 @@ export default function CountdownBanner() {
             <Sep />
             <CountUnit value={Math.floor((ms % 86400000) / 3600000)} label="hours" />
             <Sep />
-            <CountUnit value={Math.floor((ms % 3600000) / 60000)} label="minutes" />
-            <span className="pb-4 text-3xl font-black italic tracking-tight sm:pb-5 sm:text-5xl">
-              until&nbsp;Ritual!
-            </span>
+            <div className="flex items-end gap-x-4 sm:gap-x-6">
+              <CountUnit value={Math.floor((ms % 3600000) / 60000)} label="minutes" />
+              <span className="pb-4 text-3xl font-black italic tracking-tight sm:pb-5 sm:text-5xl">
+                until&nbsp;Ritual!
+              </span>
+            </div>
           </div>
           <p className="text-base font-bold italic sm:text-lg">
             Friday Oct 16 · 12 noon · Clark Hall Pub 🍻
