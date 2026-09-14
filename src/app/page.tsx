@@ -3,8 +3,6 @@ import CountdownBanner from "./countdown";
 
 const WHATSAPP_MAILTO =
   "mailto:Sci96reunion@gmail.com?subject=Add%20me%20to%20the%20Sci%20%2796%20WhatsApp%20group&body=Hi%21%20Please%20add%20me%20to%20the%20Sci%20%2796%20WhatsApp%20group.%0A%0AName%3A%20%0AWhatsApp%20mobile%20number%3A%20%0A";
-const FUND_WHATSAPP_URL =
-  "https://chat.whatsapp.com/HBhuSKDGiSmFZvh2raB0qC?s=hd&p=i&mlu=0&ilr=0&amv=2";
 const TICKETS_URL =
   "https://secureca.imodules.com/s/1922/20/interior.aspx?sid=1922&gid=2&pgid=4274&cid=7030&utm_source=hoco100-registration&utm_medium=landing-page&utm_campaign=2026-adv-hoco100&utm_content=encompass-registrationhoco100";
 const DONATE_URL = "https://givetoqueens.ca/sc96fall26";
@@ -259,12 +257,7 @@ function Tickets() {
           </ol>
         </div>
 
-        <div className="mt-8 grid gap-6 sm:grid-cols-2">
-          <Stat
-            label="Swag orders closed"
-            value="August 1, 2026"
-            hint={"The deadline has passed — swag can no longer be added to your registration."}
-          />
+        <div className="mt-8 grid gap-6">
           <Stat label="Registration closes" value="October 1, 2026" />
         </div>
       </div>
@@ -499,25 +492,6 @@ function Fund() {
           </div>
         </div>
 
-        <div className="mt-10 flex flex-col items-start gap-4 rounded-2xl border border-black/10 bg-[var(--background)] p-7 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex flex-col gap-1">
-            <p className="text-sm font-semibold uppercase tracking-wider text-[var(--queens-red)]">
-              Want to talk it over first?
-            </p>
-            <p className="max-w-xl text-zinc-600">
-              A team of classmate outreach captains is leading the campaign. Join the
-              Sci&rsquo;96 WhatsApp group to learn more about giving and connect with them.
-            </p>
-          </div>
-          <a
-            href={FUND_WHATSAPP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex h-12 shrink-0 items-center justify-center rounded-full border border-black/15 px-7 text-base font-semibold transition hover:border-black/40"
-          >
-            Join the WhatsApp group
-          </a>
-        </div>
       </div>
     </section>
   );
