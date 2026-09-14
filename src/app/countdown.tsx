@@ -39,14 +39,14 @@ export default function CountdownBanner() {
               </span>
             </div>
           </div>
-          <p className="flex items-center justify-center gap-3 text-base font-bold italic sm:text-lg">
+          <p className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-base font-bold italic sm:text-lg">
             <span>Friday Oct 16 · 12 noon ·</span>
             <Image
               src="/clark-hall-pub.jpg"
               alt="Clark Hall Pub"
-              width={48}
-              height={48}
-              className="h-12 w-12 rounded-md"
+              width={96}
+              height={96}
+              className="h-24 w-24 rounded-lg"
             />
           </p>
         </div>
