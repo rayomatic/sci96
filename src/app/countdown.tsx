@@ -3,10 +3,11 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-// Ritual: Friday Oct 16, 2026, 12:00 noon (local time)
-const RITUAL = new Date(2026, 9, 16, 12, 0, 0);
-// Hide the banner after the weekend wraps (end of Sun Oct 18)
-const WEEKEND_END = new Date(2026, 9, 19, 0, 0, 0);
+// Ritual: Friday Oct 16, 2026, 12:00 noon Eastern (EDT = UTC-4) — a fixed
+// instant, so the countdown is identical in every viewer's time zone
+const RITUAL = new Date(Date.UTC(2026, 9, 16, 16, 0, 0));
+// Hide the banner after the weekend wraps (end of Sun Oct 18, Eastern)
+const WEEKEND_END = new Date(Date.UTC(2026, 9, 19, 4, 0, 0));
 
 // Styled after the Clark Hall Pub logo: bright yellow, white, heavy black italic type
 export default function CountdownBanner() {
