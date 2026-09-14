@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 // Ritual: Friday Oct 16, 2026, 12:00 noon (local time)
@@ -22,7 +23,7 @@ export default function CountdownBanner() {
   const ms = RITUAL.getTime() - now.getTime();
 
   return (
-    <div className="border-b-4 border-black bg-[#ffe100] px-6 py-5 text-center text-black">
+    <div className="border-b-4 border-[#ffe100] bg-black px-6 py-5 text-center text-[#ffe100]">
       {ms > 0 ? (
         <div className="flex flex-col items-center gap-1.5">
           <div className="flex flex-wrap items-end justify-center gap-x-4 gap-y-2 sm:gap-x-6">
@@ -37,8 +38,15 @@ export default function CountdownBanner() {
               </span>
             </div>
           </div>
-          <p className="text-base font-bold italic sm:text-lg">
-            Friday Oct 16 · 12 noon · Clark Hall Pub 🍻
+          <p className="flex items-center justify-center gap-3 text-base font-bold italic sm:text-lg">
+            <span>Friday Oct 16 · 12 noon ·</span>
+            <Image
+              src="/clark-hall-pub.jpg"
+              alt="Clark Hall Pub"
+              width={48}
+              height={48}
+              className="h-12 w-12 rounded-md"
+            />
           </p>
         </div>
       ) : (

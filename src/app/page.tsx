@@ -147,7 +147,7 @@ function Weekend() {
               { time: "10:00 AM", title: "Line up for Ritual — seriously", body: "Students and alumni are in separate lines, and no guarantee of alumni “front of the line” privileges." },
               { time: "12:00 PM", title: "Ritual at Clark Hall Pub", body: "Where it all begins. Always." },
               { time: "3:00 PM", title: "Re-entry at Clark — or regroup at the Toucan", body: "If the line is too long, you know where to find us." },
-              { time: "8:30 PM", title: "Trifac Mixer · The Merchant Tap House", href: "https://www.merchanttaphouse.com/", body: "ArtSci, Commerce, and Engineering all under one roof. Now sold out — if you have your ticket, you’re in. Doors open at 10:00 PM to let more people in as others head out." },
+              { time: "8:30 PM", title: "Trifac Mixer · The Merchant Tap House", href: "https://www.merchanttaphouse.com/", body: "ArtSci, Commerce, and Engineering all under one roof. Sold out — but doors open at 10:00 PM and you can still join as capacity opens up." },
             ]}
           />
           <DayCard
@@ -237,7 +237,7 @@ function Tickets() {
             <CheckItem
               n="1"
               title="Friday Trifac Smoker"
-              body="ArtSci, Commerce, and Engineering under one roof to kick off the weekend. Sold out — if you already grabbed yours, you’re set."
+              body="ArtSci, Commerce, and Engineering under one roof to kick off the weekend. Sold out — but doors open at 10:00 PM and you can still join as capacity opens up."
               badge="Sold out"
             />
             <CheckItem
