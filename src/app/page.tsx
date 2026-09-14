@@ -1,4 +1,5 @@
 import Image from "next/image";
+import CountdownBanner from "./countdown";
 
 const WHATSAPP_MAILTO =
   "mailto:Sci96reunion@gmail.com?subject=Add%20me%20to%20the%20Sci%20%2796%20WhatsApp%20group&body=Hi%21%20Please%20add%20me%20to%20the%20Sci%20%2796%20WhatsApp%20group.%0A%0AName%3A%20%0AWhatsApp%20mobile%20number%3A%20%0A";
@@ -23,6 +24,7 @@ export default function Home() {
     <div className="flex flex-1 flex-col">
       <Header />
       <main className="flex-1">
+        <CountdownBanner />
         <Hero />
         <Weekend />
         <Tickets />
@@ -337,8 +339,9 @@ function Stay() {
     <section id="stay" className="border-t border-black/10 bg-white">
       <div className="mx-auto max-w-5xl px-6 py-20 sm:py-24">
         <SectionHeading eyebrow="Stay" title="Where to crash">
-          Downtown is mostly sold out, but we have two hotels blocked at Hwy 401 / Division
-          (across the parking lot from each other). Easy carpool or party-bus territory.
+          Downtown is mostly sold out, but our two reunion hotels at Hwy 401 / Division
+          (across the parking lot from each other) are still worth calling. Easy carpool or
+          party-bus territory.
         </SectionHeading>
 
         <div className="mb-8 flex items-start gap-3 rounded-xl border border-[var(--queens-gold)]/40 bg-[var(--queens-gold)]/10 p-4 text-sm">
@@ -346,9 +349,10 @@ function Stay() {
             Heads up
           </span>
           <p className="text-zinc-700">
-            Only <strong>8 rooms left</strong> — 4 in each hotel — and every remaining room has{" "}
-            <strong>two queen beds</strong>. Blocks are held until <strong>August 31, 2026</strong>;
-            after that, anything left goes back to the public at whatever the going rate is. Book now.
+            The discounted group blocks have now <strong>closed</strong>, and unbooked rooms went
+            back to the public. Both hotels may still have rooms at regular rates — call directly,
+            mention the reunion, and ask if they&rsquo;ll honour the group rate. No promises, but
+            it never hurts.
           </p>
         </div>
 
@@ -359,7 +363,7 @@ function Stay() {
             rate="$209 / night"
             phone="343-477-0280"
             link="https://www.choicehotels.com/reservations/groups/AJ83J0"
-            inventory="Only 4 rooms left"
+            inventory="Group block closed — call for availability"
           />
           <HotelCard
             name="Quality Inn & Conference Centre"
@@ -367,7 +371,7 @@ function Stay() {
             rate="$189 / night"
             phone="613-546-3661"
             link="https://www.choicehotels.com/reservations/groups/VX25T9"
-            inventory="Only 4 rooms left"
+            inventory="Group block closed — call for availability"
           />
         </div>
 
