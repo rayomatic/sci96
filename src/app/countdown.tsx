@@ -24,7 +24,7 @@ export default function CountdownBanner() {
     <div className="border-b border-black/10 bg-[var(--queens-red)] px-6 py-3 text-center text-white">
       {days > 0 ? (
         <p className="text-lg font-bold tracking-tight sm:text-xl">
-          <span className="align-baseline text-3xl font-extrabold tabular-nums sm:text-4xl">
+          <span className="align-baseline text-[7.5rem] font-extrabold leading-none tabular-nums sm:text-[9rem]">
             {days}
           </span>{" "}
           day{days === 1 ? "" : "s"} until Homecoming!
