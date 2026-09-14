@@ -21,7 +21,7 @@ export default function CountdownBanner() {
   const ms = RITUAL.getTime() - now.getTime();
 
   return (
-    <div className="border-b border-black/10 bg-[var(--queens-gold)] px-6 py-5 text-center text-[var(--queens-blue)]">
+    <div className="border-b border-black/10 bg-[var(--queens-blue)] px-6 py-5 text-center text-[var(--queens-gold)]">
       {ms > 0 ? (
         <div className="flex flex-col items-center gap-1">
           <div className="flex items-end justify-center gap-4 sm:gap-7">
