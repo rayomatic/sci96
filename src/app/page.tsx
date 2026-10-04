@@ -143,7 +143,7 @@ function Weekend() {
             date="October 16"
             items={[
               { time: "10:00 AM", title: "Line up for Ritual — seriously", body: "Students and alumni are in separate lines, and no guarantee of alumni “front of the line” privileges." },
-              { time: "12:00 PM", title: "Ritual at Clark Hall Pub", body: "Where it all begins. Always." },
+              { time: "12:00–3:00 PM", title: "Ritual at Clark Hall Pub", body: "Where it all begins. Always. First sitting ends with a mandatory exit at 3:00 PM — everyone out, then line up again for the second sitting (3–6 PM)." },
               { time: "2:00–6:00 PM", title: "Homecoming Registration & Swag Pickup · Grant Hall", href: "https://maps.google.com/?q=Grant+Hall,+Queen%27s+University,+Kingston,+ON", body: "Check in for Homecoming and pick up your Sci’96 hoodie and hat at the Reunions table." },
               { time: "3:00 PM", title: "Re-entry at Clark — or regroup at the Toucan", body: "If the line is too long, you know where to find us." },
               { time: "8:30 PM", title: "Trifac Mixer · The Merchant Tap House", href: "https://www.merchanttaphouse.com/", body: "ArtSci, Commerce, and Engineering all under one roof. Sold out — but doors open at 10:00 PM and you can still join as capacity opens up." },
