@@ -154,7 +154,7 @@ function Weekend() {
             items={[
               { time: "8:30–11:30 AM", title: "Queen’s Pancake Breakfast", body: "Bookable time slot for the class year photo. Show up, eat carbs, smile for the camera." },
               { time: "~10:00 AM", title: "Pancake Kegger", body: "Student house on William near Division — a proud Sci’96 tradition." },
-              { time: "Afternoon", title: "Football Game", body: "Your ticket is included in the reunion package. Sci’96 class block — show up and be loud." },
+              { time: "1:00–4:00 PM", title: "Football Game", body: "Your ticket is included in the reunion package. Sci’96 class block — show up and be loud." },
               { time: "7:00–10:00 PM", title: "University Club Mixer", body: "Finger foods, drinks, good company. The Dean is dropping by to say hi." },
             ]}
           />
