@@ -144,7 +144,7 @@ function Weekend() {
             items={[
               { time: "10:00 AM", title: "Line up for Ritual — seriously", body: "Students and alumni are in separate lines, and no guarantee of alumni “front of the line” privileges." },
               { time: "12:00 PM", title: "Ritual at Clark Hall Pub", body: "Where it all begins. Always." },
-              { time: "2:00–6:00 PM", title: "Homecoming Registration & Swag Pickup · Grant Hall", href: "https://maps.google.com/?q=Grant+Hall,+Queen%27s+University,+Kingston,+ON", body: "Check in for Homecoming and pick up your Sci’96 hoodie and hat at the Reunions table. Missed it? Grant Hall is open again Saturday 8:30 AM–12:30 PM." },
+              { time: "2:00–6:00 PM", title: "Homecoming Registration & Swag Pickup · Grant Hall", href: "https://maps.google.com/?q=Grant+Hall,+Queen%27s+University,+Kingston,+ON", body: "Check in for Homecoming and pick up your Sci’96 hoodie and hat at the Reunions table." },
               { time: "3:00 PM", title: "Re-entry at Clark — or regroup at the Toucan", body: "If the line is too long, you know where to find us." },
               { time: "8:30 PM", title: "Trifac Mixer · The Merchant Tap House", href: "https://www.merchanttaphouse.com/", body: "ArtSci, Commerce, and Engineering all under one roof. Sold out — but doors open at 10:00 PM and you can still join as capacity opens up." },
             ]}
@@ -153,6 +153,7 @@ function Weekend() {
             day="Saturday"
             date="October 17"
             items={[
+              { time: "8:30 AM–12:00 PM", title: "Homecoming Registration & Swag Pickup · Grant Hall", href: "https://maps.google.com/?q=Grant+Hall,+Queen%27s+University,+Kingston,+ON", body: "Second chance to check in and pick up your Sci’96 hoodie and hat at the Reunions table." },
               { time: "10:00 AM", title: "Pancake Kegger · 246 William St", href: "https://maps.google.com/?q=246+William+St,+Kingston,+ON", body: "Student house at 246 William St (near Division) — a proud Sci’96 tradition. Starts at 10:00 AM." },
               { time: "12:00 PM", title: "Sci’96 Class Photo · Miller Hall", href: "https://maps.app.goo.gl/8eyHGyMBAihDJA4dA", body: "Front steps of Miller Hall. Everyone in the shot — be there at noon sharp." },
               { time: "1:00–4:00 PM", title: "Football Game", body: "Your ticket is included in the reunion package. Sci’96 class block — show up and be loud." },
