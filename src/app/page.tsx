@@ -152,7 +152,7 @@ function Weekend() {
             day="Saturday"
             date="October 17"
             items={[
-              { time: "~10:00 AM", title: "Pancake Kegger", body: "Student house on William near Division — a proud Sci’96 tradition." },
+              { time: "10:00 AM", title: "Pancake Kegger · 246 William St", href: "https://maps.google.com/?q=246+William+St,+Kingston,+ON", body: "Student house at 246 William St (near Division) — a proud Sci’96 tradition. Starts at 10:00 AM." },
               { time: "12:00 PM", title: "Sci’96 Class Photo · Miller Hall", href: "https://maps.app.goo.gl/8eyHGyMBAihDJA4dA", body: "Front steps of Miller Hall. Everyone in the shot — be there at noon sharp." },
               { time: "1:00–4:00 PM", title: "Football Game", body: "Your ticket is included in the reunion package. Sci’96 class block — show up and be loud." },
               { time: "7:00–10:00 PM", title: "University Club Mixer", body: "Finger foods, drinks, good company. The Dean is dropping by to say hi." },
