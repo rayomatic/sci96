@@ -3,15 +3,12 @@ import CountdownBanner from "./countdown";
 
 const WHATSAPP_MAILTO =
   "mailto:Sci96reunion@gmail.com?subject=Add%20me%20to%20the%20Sci%20%2796%20WhatsApp%20group&body=Hi%21%20Please%20add%20me%20to%20the%20Sci%20%2796%20WhatsApp%20group.%0A%0AName%3A%20%0AWhatsApp%20mobile%20number%3A%20%0A";
-const TICKETS_URL =
-  "https://secureca.imodules.com/s/1922/20/interior.aspx?sid=1922&gid=2&pgid=4274&cid=7030&utm_source=hoco100-registration&utm_medium=landing-page&utm_campaign=2026-adv-hoco100&utm_content=encompass-registrationhoco100";
 const DONATE_URL = "https://givetoqueens.ca/sc96fall26";
 const PRESENTATION_URL =
   "https://click.advancement.queensu.ca/?qs=ABB7InYiOjEsImQiOjQ5NjB9AA0AAAAAAN0UIdh0cPy267noq4XiaX0I9tqx-fMUSUwpTFJaSisFJ0PLAjdWVtD1G9ziQPfWsQ91H2DvPZAZltBqI6CBNKLn-ni6capUrco";
 
 const sections = [
   { id: "weekend", label: "The Weekend" },
-  { id: "tickets", label: "Tickets" },
   { id: "stay", label: "Stay" },
   { id: "fund", label: "Forever Fund" },
   { id: "contact", label: "Stay in Touch" },
@@ -25,7 +22,6 @@ export default function Home() {
         <CountdownBanner />
         <Hero />
         <Weekend />
-        <Tickets />
         <Stay />
         <Fund />
         <Contact />
@@ -194,125 +190,6 @@ function DayCard({
         ))}
       </ol>
     </article>
-  );
-}
-
-function Tickets() {
-  return (
-    <section id="tickets" className="border-t border-black/10">
-      <div className="mx-auto max-w-5xl px-6 py-20 sm:py-24">
-        <SectionHeading eyebrow="Tickets" title="Tickets are on sale now">
-          Registration runs through the Queen&rsquo;s Homecoming portal — one checkout. The catch:
-          you have to add each piece yourself, so make sure you select every Sci&rsquo;96 item
-          below or you&rsquo;ll miss something. Two heads up: the <strong>Trifac Smoker is sold
-          out</strong>, and <strong>the swag order deadline has passed</strong>.
-        </SectionHeading>
-
-        <a
-          href={TICKETS_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex h-12 items-center justify-center rounded-full bg-[var(--queens-red)] px-7 text-base font-semibold text-white shadow-sm transition hover:bg-[#94000c]"
-        >
-          🎟️ Register on the Queen&rsquo;s Homecoming portal
-        </a>
-
-        <div className="mt-10 rounded-2xl border border-black/10 bg-white p-7">
-          <p className="text-sm font-semibold uppercase tracking-wider text-[var(--queens-red)]">
-            When you register, select what&rsquo;s still available
-          </p>
-          <ol className="mt-5 flex flex-col gap-4">
-            <CheckItem
-              n="1"
-              title="Friday Trifac Smoker"
-              body="ArtSci, Commerce, and Engineering under one roof to kick off the weekend. Sold out — but doors open at 10:00 PM and you can still join as capacity opens up."
-              badge="Sold out"
-            />
-            <CheckItem
-              n="2"
-              title={"Saturday Sci’96 Reunion Package"}
-              body="Our class events for Saturday — the heart of the weekend."
-            />
-            <CheckItem
-              n="3"
-              title="Football ticket"
-              body={"Queen’s has said they’ll seat the Sci’96 class together — grab a ticket and sit with your people."}
-            />
-            <CheckItem
-              n="4"
-              title="Swag"
-              body="Hoodies, toques, and caps. Orders closed August 1 — if you got yours in before the deadline, you’re set."
-              badge="Orders closed"
-            />
-          </ol>
-        </div>
-
-        <div className="mt-8 grid gap-6">
-          <Stat label="Registration closes" value="October 1, 2026" />
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function CheckItem({
-  n,
-  title,
-  body,
-  badge,
-}: {
-  n: string;
-  title: string;
-  body: string;
-  badge?: string;
-}) {
-  return (
-    <li className="flex gap-4">
-      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[var(--queens-red)] text-sm font-bold text-white">
-        {n}
-      </span>
-      <div className="flex flex-col gap-1">
-        <p className="font-semibold">
-          {title}
-          {badge ? (
-            <span className="ml-2 inline-flex items-center rounded-full bg-[var(--queens-red)] px-2.5 py-0.5 align-middle text-xs font-bold uppercase tracking-wider text-white">
-              {badge}
-            </span>
-          ) : null}
-        </p>
-        <p className="text-sm text-zinc-600">{body}</p>
-      </div>
-    </li>
-  );
-}
-
-function Stat({
-  label,
-  value,
-  hint,
-  urgent,
-}: {
-  label: string;
-  value: string;
-  hint?: string;
-  urgent?: boolean;
-}) {
-  return (
-    <div
-      className={`rounded-2xl border p-6 ${
-        urgent ? "border-[var(--queens-red)]/40 bg-[var(--queens-red)]/5" : "border-black/10 bg-white"
-      }`}
-    >
-      <p className="text-xs font-semibold uppercase tracking-wider text-zinc-500">{label}</p>
-      <p
-        className={`mt-2 text-xl font-bold ${
-          urgent ? "text-[var(--queens-red)]" : "text-[var(--queens-blue)]"
-        }`}
-      >
-        {value}
-      </p>
-      {hint ? <p className="mt-2 text-sm text-zinc-600">{hint}</p> : null}
-    </div>
   );
 }
 
