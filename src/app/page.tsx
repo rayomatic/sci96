@@ -78,22 +78,10 @@ function Hero() {
             Homecoming weekend in Kingston · <strong>October 16–18, 2026</strong>.
           </p>
         </div>
-        <p className="inline-flex items-center gap-2 text-base font-semibold text-[var(--queens-blue)]">
-          It&rsquo;s not too late!{" "}
-          <span className="text-[var(--queens-red)]">Join ~150 of us for an amazing weekend</span>
-        </p>
         <div className="flex flex-col items-center gap-3 sm:flex-row">
           <a
-            href={TICKETS_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex h-12 items-center justify-center rounded-full bg-[var(--queens-red)] px-7 text-base font-semibold text-white shadow-sm transition hover:bg-[#94000c]"
-          >
-            🎟️ Buy Homecoming tickets
-          </a>
-          <a
             href={WHATSAPP_MAILTO}
-            className="inline-flex h-12 items-center justify-center rounded-full border border-black/15 px-7 text-base font-semibold transition hover:border-black/40"
+            className="inline-flex h-12 items-center justify-center rounded-full bg-[var(--queens-red)] px-7 text-base font-semibold text-white shadow-sm transition hover:bg-[#94000c]"
           >
             Join the WhatsApp group
           </a>
