@@ -400,7 +400,6 @@ function Footer() {
     <footer className="border-t border-black/10 bg-[var(--background)]">
       <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-3 px-6 py-8 text-sm text-zinc-500 sm:flex-row">
         <p>Built by the Sci&rsquo;96 reunion organizing committee.</p>
-        <p className="font-semibold tracking-wider text-[var(--queens-red)]">Cha Gheill!</p>
       </div>
     </footer>
   );
