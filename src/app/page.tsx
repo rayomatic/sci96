@@ -323,7 +323,7 @@ function Fund() {
         <div className="rounded-2xl border border-black/10 bg-white p-7">
           <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
             <p className="text-3xl font-bold tracking-tight text-[var(--queens-blue)]">
-              $125,000{" "}
+              $165,000{" "}
               <span className="text-base font-semibold text-zinc-500">raised so far</span>
             </p>
             <p className="text-sm font-semibold text-zinc-600">
@@ -331,10 +331,10 @@ function Fund() {
             </p>
           </div>
           <div className="mt-4 h-3 overflow-hidden rounded-full bg-black/10">
-            <div className="h-full w-1/2 rounded-full bg-[var(--queens-red)]" />
+            <div className="h-full rounded-full bg-[var(--queens-red)]" style={{ width: "66%" }} />
           </div>
           <p className="mt-4 text-sm text-zinc-600">
-            We&rsquo;re halfway there. $250,000 establishes the fund as a permanent endowment —
+            We&rsquo;re two-thirds of the way there. $250,000 establishes the fund as a permanent endowment —
             and the campaign continues with another $250,000 committed over the following five
             years. Every gift brings us closer to a lasting source of support for Smith
             Engineering students, for generations.
