@@ -334,7 +334,7 @@ function Fund() {
             <div className="h-full rounded-full bg-[var(--queens-red)]" style={{ width: "66%" }} />
           </div>
           <p className="mt-4 text-sm text-zinc-600">
-            We&rsquo;re two-thirds of the way there. $250,000 establishes the fund as a permanent endowment —
+            We&rsquo;re more than halfway. $250,000 establishes the fund as a permanent endowment —
             and the campaign continues with another $250,000 committed over the following five
             years. Every gift brings us closer to a lasting source of support for Smith
             Engineering students, for generations.
