@@ -139,7 +139,7 @@ function Weekend() {
             items={[
               { time: "8:30 AM–12:00 PM", title: "Homecoming Registration & Swag Pickup · Grant Hall", href: "https://maps.google.com/?q=Grant+Hall,+Queen%27s+University,+Kingston,+ON", body: "Second chance to check in and pick up your Sci’96 hoodie and hat at the Reunions table." },
               { time: "10:00 AM", title: "Pancake Kegger · 246 William St", href: "https://maps.google.com/?q=246+William+St,+Kingston,+ON", body: "Student house at 246 William St (near Division) — a proud Sci’96 tradition." },
-              { time: "12:00 PM", title: "Sci’96 Class Photo · Miller Hall", href: "https://maps.app.goo.gl/8eyHGyMBAihDJA4dA", body: "Front steps of Miller Hall. Everyone in the shot — be there at noon sharp." },
+              { time: "11:30 AM", title: "Sci’96 Class Photo · Mitchell Hall", href: "https://maps.google.com/?q=Mitchell+Hall,+69+Union+St,+Kingston,+ON", body: "Mitchell Hall. Everyone in the shot — be there at 11:30 sharp." },
               { time: "1:00–4:00 PM", title: "Football Game", body: "Your ticket is included in the reunion package. Sci’96 class block — show up and be loud." },
               { time: "7:00–10:00 PM", title: "University Club Mixer", body: "Finger foods, drinks, good company. The Dean is dropping by to say hi." },
             ]}
