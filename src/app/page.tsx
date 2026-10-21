@@ -1,5 +1,9 @@
 import Image from "next/image";
-import CountdownBanner from "./countdown";
+import { Old_Standard_TT, Playfair_Display, UnifrakturMaguntia } from "next/font/google";
+
+const blackletter = UnifrakturMaguntia({ weight: "400", subsets: ["latin"] });
+const headline = Playfair_Display({ weight: ["700", "900"], subsets: ["latin"] });
+const oldstyle = Old_Standard_TT({ weight: ["400", "700"], style: ["normal", "italic"], subsets: ["latin"] });
 
 const WHATSAPP_MAILTO =
   "mailto:Sci96reunion@gmail.com?subject=Add%20me%20to%20the%20Sci%20%2796%20WhatsApp%20group&body=Hi%21%20Please%20add%20me%20to%20the%20Sci%20%2796%20WhatsApp%20group.%0A%0AName%3A%20%0AWhatsApp%20mobile%20number%3A%20%0A";
@@ -8,8 +12,6 @@ const PRESENTATION_URL =
   "https://click.advancement.queensu.ca/?qs=ABB7InYiOjEsImQiOjQ5NjB9AA0AAAAAAN0UIdh0cPy267noq4XiaX0I9tqx-fMUSUwpTFJaSisFJ0PLAjdWVtD1G9ziQPfWsQ91H2DvPZAZltBqI6CBNKLn-ni6capUrco";
 
 const sections = [
-  { id: "weekend", label: "The Weekend" },
-  { id: "stay", label: "Stay" },
   { id: "fund", label: "Forever Fund" },
   { id: "contact", label: "Stay in Touch" },
 ];
@@ -19,10 +21,7 @@ export default function Home() {
     <div className="flex flex-1 flex-col">
       <Header />
       <main className="flex-1">
-        <CountdownBanner />
-        <Hero />
-        <Weekend />
-        <Stay />
+        <Bugle />
         <Fund />
         <Contact />
       </main>
@@ -51,43 +50,94 @@ function Header() {
   );
 }
 
-function Hero() {
+function Bugle() {
   return (
-    <section id="top" className="relative overflow-hidden">
-      <div className="mx-auto flex max-w-5xl flex-col items-center gap-8 px-6 pt-16 pb-20 text-center sm:pt-24 sm:pb-28">
-        <Image
-          src="/crest.svg"
-          alt="Sci'96 crest"
-          width={180}
-          height={234}
-          priority
-          className="h-auto w-32 sm:w-44"
-        />
-        <div className="flex flex-col items-center gap-4">
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--queens-red)]">
-            Queen&rsquo;s Engineering · Sci&rsquo;96
-          </p>
-          <h1 className="text-balance text-4xl font-bold leading-[1.05] tracking-tight sm:text-6xl">
-            30 years later. <span className="text-[var(--queens-blue)]">We&rsquo;re coming home.</span>
-          </h1>
-          <p className="max-w-xl text-balance text-lg text-zinc-600 sm:text-xl">
-            Homecoming weekend in Kingston · <strong>October 16–18, 2026</strong>.
-          </p>
+    <section id="top" className="bg-[#e7dcc3] px-3 py-8 sm:px-6 sm:py-14">
+      <article
+        className={`${oldstyle.className} mx-auto max-w-5xl border border-[#1c1a17]/30 bg-[#f4ecd8] px-4 pt-4 pb-8 text-[#1c1a17] shadow-[0_18px_40px_-20px_rgba(60,40,10,0.55)] sm:px-10 sm:pt-6 sm:pb-12`}
+        style={{
+          backgroundImage:
+            "radial-gradient(ellipse at 20% 10%, rgba(255,255,255,0.45), transparent 60%), radial-gradient(ellipse at 85% 90%, rgba(120,90,40,0.12), transparent 55%)",
+        }}
+      >
+        <div className="flex items-center justify-between gap-2 border-b border-[#1c1a17] pb-1 text-[10px] uppercase tracking-[0.15em] sm:text-xs">
+          <span>Vol. XXX · No. 100</span>
+          <span className="hidden font-bold sm:inline">Homecoming Extra</span>
+          <span>One Toonie</span>
         </div>
-        <div className="flex flex-col items-center gap-3 sm:flex-row">
-          <a
-            href={WHATSAPP_MAILTO}
-            className="inline-flex h-12 items-center justify-center rounded-full bg-[var(--queens-red)] px-7 text-base font-semibold text-white shadow-sm transition hover:bg-[#94000c]"
-          >
-            Join the WhatsApp group
+
+        <h1
+          className={`${blackletter.className} py-2 text-center text-[13vw] leading-none sm:py-3 sm:text-8xl`}
+        >
+          The Kingston Bugle
+        </h1>
+
+        <div className="border-y-[3px] border-double border-[#1c1a17] py-1 text-center text-[10px] uppercase tracking-[0.15em] sm:flex sm:justify-between sm:text-xs">
+          <span className="block">Kingston, Ontario</span>
+          <span className="block">Tuesday, October 20, 2026</span>
+          <a href="#fund" className="block underline-offset-2 hover:underline">
+            Inside: The Forever Fund ↓
           </a>
         </div>
-        <p className="max-w-md text-sm text-zinc-500">
-          The WhatsApp group is where it&rsquo;s all happening — updates, planning chatter, and
-          reconnecting with classmates you haven&rsquo;t talked to in way too long. To keep the
-          spammers out, we add people by email — just hit the button and send.
+
+        <h2
+          className={`${headline.className} mt-5 text-center text-[11.5vw] font-black uppercase leading-[0.95] tracking-tight sm:mt-7 sm:text-[5.75rem]`}
+        >
+          Sci&nbsp;&rsquo;96 Rocks Hoco&nbsp;100
+        </h2>
+        <p className="mx-auto mt-3 max-w-3xl text-center text-base italic sm:mt-4 sm:text-xl">
+          Class of &rsquo;96 returns in force for Queen&rsquo;s 100th Homecoming; gold jackets and
+          foam fingers sighted across campus
         </p>
-      </div>
+
+        <figure className="mt-6 sm:mt-8">
+          <div className="relative overflow-hidden border border-[#1c1a17]">
+            <Image
+              src="/hoco100-class-photo.jpg"
+              alt="Sci'96 classmates in gold jackets with foam 'Sci 96 Rocks Hoco' fingers, on the steps of Mitchell Hall at Homecoming 2026"
+              width={2048}
+              height={1362}
+              priority
+              sizes="(min-width: 1024px) 960px, 100vw"
+              className="h-auto w-full"
+              style={{ filter: "grayscale(1) sepia(0.35) contrast(1.12) brightness(1.02)" }}
+            />
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 mix-blend-multiply opacity-25"
+              style={{
+                backgroundImage: "radial-gradient(rgba(28,26,23,0.9) 0.6px, transparent 0.9px)",
+                backgroundSize: "3px 3px",
+              }}
+            />
+          </div>
+          <figcaption className="mt-2 border-b border-[#1c1a17]/40 pb-2 text-xs sm:text-sm">
+            <strong className="mr-1 uppercase tracking-wide">Strength in numbers.</strong> The class of
+            Science &rsquo;96, thirty years on, at Mitchell Hall on Saturday, Oct. 17.
+          </figcaption>
+        </figure>
+
+        <div className="mt-6 gap-8 text-justify text-[15px] leading-relaxed hyphens-auto sm:columns-3 sm:text-base">
+          <p className="first-letter:float-left first-letter:mr-2 first-letter:font-bold first-letter:leading-[0.8] first-letter:text-6xl">
+            <span className="mr-1 font-bold uppercase">Kingston —</span> Thirty years after they first
+            pulled on the gold jackets, the engineers of Science &rsquo;96 descended on Queen&rsquo;s
+            University for the 100th Homecoming, and by every available account, they rocked it.
+          </p>
+          <p className="mt-4">
+            Witnesses report sightings at Clark Hall Pub, a Pancake Kegger on William Street, and a
+            class photo at Mitchell Hall that called for a very wide lens and considerable
+            patience. Foam fingers bearing the words &ldquo;Sci &rsquo;96 Rocks Hoco&rdquo; were
+            raised throughout.
+          </p>
+          <p className="mt-4">
+            The weekend is over, but the class&rsquo;s legacy outlasts the hangovers: the Science
+            &rsquo;96 Forever Fund campaign continues.{" "}
+            <a href="#fund" className="font-bold underline underline-offset-2">
+              Full story below.
+            </a>
+          </p>
+        </div>
+      </article>
     </section>
   );
 }
@@ -108,194 +158,6 @@ function SectionHeading({
       </p>
       <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">{title}</h2>
       {children ? <p className="max-w-2xl text-lg text-zinc-600">{children}</p> : null}
-    </div>
-  );
-}
-
-function Weekend() {
-  return (
-    <section id="weekend" className="border-t border-black/10 bg-white">
-      <div className="mx-auto max-w-5xl px-6 py-20 sm:py-24">
-        <SectionHeading eyebrow="The Weekend" title="What&rsquo;s happening when">
-          We&rsquo;ve organized a plan for nostalgia, celebration, and questionable decisions.
-          Show up, see your people, eat carbs, smile for the camera.
-        </SectionHeading>
-
-        <div className="grid gap-6 md:grid-cols-2">
-          <DayCard
-            day="Friday"
-            date="October 16"
-            items={[
-              { time: "10:00 AM", title: "Line up for Ritual — seriously", body: "Students and alumni are in separate lines, and no guarantee of alumni “front of the line” privileges." },
-              { time: "12:00–3:00 PM", title: "Ritual at Clark Hall Pub", body: "Where it all begins. Always. First sitting ends with a mandatory exit at 3:00 PM — everyone out, then line up again for the second sitting (3–6 PM)." },
-              { time: "2:00–6:00 PM", title: "Homecoming Registration & Swag Pickup · Grant Hall", href: "https://maps.google.com/?q=Grant+Hall,+Queen%27s+University,+Kingston,+ON", body: "Check in for Homecoming and pick up your Sci’96 hoodie and hat at the Reunions table." },
-              { time: "3:00 PM", title: "Re-entry at Clark — or regroup at the Toucan", body: "If the line is too long, you know where to find us." },
-              { time: "8:30 PM", title: "Trifac Mixer · The Merchant Tap House", href: "https://www.merchanttaphouse.com/", body: "ArtSci, Commerce, and Engineering all under one roof. Sold out — but doors open at 10:00 PM and you can still join as capacity opens up." },
-            ]}
-          />
-          <DayCard
-            day="Saturday"
-            date="October 17"
-            items={[
-              { time: "8:30 AM–12:00 PM", title: "Homecoming Registration & Swag Pickup · Grant Hall", href: "https://maps.google.com/?q=Grant+Hall,+Queen%27s+University,+Kingston,+ON", body: "Second chance to check in and pick up your Sci’96 hoodie and hat at the Reunions table." },
-              { time: "10:00 AM", title: "Pancake Kegger · 246 William St", href: "https://maps.google.com/?q=246+William+St,+Kingston,+ON", body: "Student house at 246 William St (near Division) — a proud Sci’96 tradition." },
-              { time: "11:30 AM", title: "Sci’96 Class Photo · Mitchell Hall", href: "https://maps.google.com/?q=Mitchell+Hall,+69+Union+St,+Kingston,+ON", body: "Mitchell Hall. Everyone in the shot — be there at 11:30 sharp." },
-              { time: "1:00–4:00 PM", title: "Football Game", body: "Your ticket is included in the reunion package. Sci’96 class block — show up and be loud." },
-              { time: "7:00–10:00 PM", title: "University Club Mixer", body: "Finger foods, drinks, good company. The Dean is dropping by to say hi." },
-            ]}
-          />
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function DayCard({
-  day,
-  date,
-  items,
-}: {
-  day: string;
-  date: string;
-  items: { time: string; title: string; body: string; href?: string }[];
-}) {
-  return (
-    <article className="flex flex-col gap-5 rounded-2xl border border-black/10 bg-[var(--background)] p-7">
-      <header className="flex items-baseline justify-between border-b border-black/10 pb-4">
-        <h3 className="text-2xl font-bold text-[var(--queens-blue)]">{day}</h3>
-        <p className="text-sm font-medium text-zinc-500">{date}</p>
-      </header>
-      <ol className="flex flex-col gap-5">
-        {items.map((it) => (
-          <li key={it.title} className="flex flex-col gap-1">
-            <p className="font-mono text-xs uppercase tracking-wider text-[var(--queens-red)]">
-              {it.time}
-            </p>
-            <p className="font-semibold">
-              {it.href ? (
-                <a
-                  href={it.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline decoration-black/30 underline-offset-4 transition hover:decoration-black"
-                >
-                  {it.title}
-                </a>
-              ) : (
-                it.title
-              )}
-            </p>
-            <p className="text-sm text-zinc-600">{it.body}</p>
-          </li>
-        ))}
-      </ol>
-    </article>
-  );
-}
-
-function Stay() {
-  return (
-    <section id="stay" className="border-t border-black/10 bg-white">
-      <div className="mx-auto max-w-5xl px-6 py-20 sm:py-24">
-        <SectionHeading eyebrow="Stay" title="Where to crash">
-          Downtown is mostly sold out, but our two reunion hotels at Hwy 401 / Division
-          (across the parking lot from each other) are still worth calling. Easy carpool or
-          party-bus territory.
-        </SectionHeading>
-
-        <div className="mb-8 flex items-start gap-3 rounded-xl border border-[var(--queens-gold)]/40 bg-[var(--queens-gold)]/10 p-4 text-sm">
-          <span className="font-mono text-xs font-bold uppercase tracking-wider text-[var(--queens-red)]">
-            Heads up
-          </span>
-          <p className="text-zinc-700">
-            The discounted group blocks have now <strong>closed</strong>, and unbooked rooms went
-            back to the public. Both hotels may still have rooms at regular rates — call directly,
-            mention the reunion, and ask if they&rsquo;ll honour the group rate. No promises, but
-            it never hurts.
-          </p>
-        </div>
-
-        <div className="grid gap-6 md:grid-cols-2">
-          <HotelCard
-            name="Comfort Suites"
-            roomType="Two-queen-bed rooms"
-            rate="$209 / night"
-            phone="343-477-0280"
-            link="https://www.choicehotels.com/reservations/groups/AJ83J0"
-            inventory="Group block closed — call for availability"
-          />
-          <HotelCard
-            name="Quality Inn & Conference Centre"
-            roomType="Two-queen-bed rooms"
-            rate="$189 / night"
-            phone="613-546-3661"
-            link="https://www.choicehotels.com/reservations/groups/VX25T9"
-            inventory="Group block closed — call for availability"
-          />
-        </div>
-
-        <div className="mt-8 grid gap-4 rounded-2xl border border-black/10 bg-[var(--background)] p-6 text-sm text-zinc-700 sm:grid-cols-2">
-          <Detail label="Group name (when calling)" value={'"Queen\u2019s Sci\u201996 30th Reunion"'} />
-          <Detail label="Bookable nights" value="Thu Oct 15 – Sun Oct 18 (Thu also at group rate)" />
-          <Detail label="Minimum stay" value="2 nights (Fri + Sat)" />
-          <Detail label="Taxes & parking" value="Rates exclude 5% MAT + 13% HST · $6 / night parking" />
-          <Detail label="Check-in / out" value="3:00 PM / 11:00 AM" />
-          <Detail label="Cancellation" value="Free up to 7 days before arrival; after that, 1 night + tax" />
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function HotelCard({
-  name,
-  roomType,
-  rate,
-  phone,
-  link,
-  inventory,
-}: {
-  name: string;
-  roomType: string;
-  rate: string;
-  phone: string;
-  link: string;
-  inventory: string;
-}) {
-  return (
-    <article className="flex flex-col gap-5 rounded-2xl border border-black/10 bg-[var(--background)] p-7">
-      <header className="flex flex-col gap-1">
-        <h3 className="text-xl font-bold text-[var(--queens-blue)]">{name}</h3>
-        <p className="text-sm text-zinc-600">
-          {roomType} · <span className="font-semibold text-[var(--queens-red)]">{inventory}</span>
-        </p>
-      </header>
-      <p className="text-3xl font-bold tracking-tight">{rate}</p>
-      <div className="flex flex-col gap-2 text-sm">
-        <a
-          href={link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex h-11 items-center justify-center rounded-full bg-[var(--queens-blue)] px-5 font-semibold text-white transition hover:bg-[#0a2143]"
-        >
-          Book online
-        </a>
-        <a
-          href={`tel:${phone.replace(/-/g, "")}`}
-          className="inline-flex h-11 items-center justify-center rounded-full border border-black/15 px-5 font-semibold transition hover:border-black/40"
-        >
-          Call {phone}
-        </a>
-      </div>
-    </article>
-  );
-}
-
-function Detail({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="flex flex-col gap-1">
-      <p className="text-xs font-semibold uppercase tracking-wider text-zinc-500">{label}</p>
-      <p>{value}</p>
     </div>
   );
 }
@@ -327,7 +189,7 @@ function Fund() {
               <span className="text-base font-semibold text-zinc-500">raised so far</span>
             </p>
             <p className="text-sm font-semibold text-zinc-600">
-              Goal: $250,000 by the end of Homecoming weekend
+              Goal: $250,000
             </p>
           </div>
           <div className="mt-4 h-3 overflow-hidden rounded-full bg-black/10">
@@ -372,12 +234,11 @@ function Contact() {
           Stay in Touch
         </p>
         <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-          Got your tickets? Now stay in the loop
+          Homecoming&rsquo;s over. The chat isn&rsquo;t.
         </h2>
         <p className="max-w-xl text-lg text-white/80">
-          Buying your tickets is the big one — but don&rsquo;t stop there. Get on the Sci&rsquo;96
-          WhatsApp group, where the planning chatter, the updates, and the reconnecting actually
-          happen.
+          The Sci&rsquo;96 WhatsApp group is where the photos, the stories, and the reconnecting
+          carry on. If you&rsquo;re not in yet, now&rsquo;s the time.
         </p>
         <a
           href={WHATSAPP_MAILTO}
@@ -387,8 +248,7 @@ function Contact() {
         </a>
         <p className="text-sm text-white/60">
           The button opens an email to Sci96reunion@gmail.com — we add people by hand to keep
-          the spammers out. This site is reaching most of the class, but not everyone — spread
-          the word.
+          the spammers out.
         </p>
       </div>
     </section>

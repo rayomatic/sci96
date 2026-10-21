@@ -25,13 +25,13 @@ export const metadata: Metadata = {
     url: "https://sci96.ca",
     siteName: "Sci'96 Reunion",
     type: "website",
-    images: [{ url: "/crest.svg", width: 1466, height: 1910, alt: "Sci'96 crest" }],
+    images: [{ url: "/hoco100-class-photo.jpg", width: 2048, height: 1362, alt: "Sci'96 class photo at Homecoming 2026" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Sci'96 — 30 Years Later",
     description,
-    images: ["/crest.svg"],
+    images: ["/hoco100-class-photo.jpg"],
   },
   icons: { icon: "/crest.svg" },
 };
