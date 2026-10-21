@@ -122,9 +122,6 @@ export function Contact() {
         <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--queens-gold)]">
           Stay in Touch
         </p>
-        <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-          Homecoming&rsquo;s over. The chat isn&rsquo;t.
-        </h2>
         <p className="max-w-xl text-lg text-white/80">
           The Sci&rsquo;96 WhatsApp group is where the photos, the stories, and the reconnecting
           carry on. If you&rsquo;re not in yet, now&rsquo;s the time.
