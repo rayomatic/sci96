@@ -62,10 +62,10 @@ export function Tabloid() {
 
         <div className="mt-5 grid grid-cols-1 border-t-4 border-[var(--queens-blue)] text-sm font-bold uppercase leading-tight sm:grid-cols-3">
           <p className="border-b-2 border-black/15 p-3 sm:border-r-2 sm:border-b-0 sm:p-4">
-            <span className="text-[var(--queens-red)]">Ritual:</span> Other classes squeezed out
+            <span className="mr-1 text-[var(--queens-red)]">Ritual:</span> Other classes squeezed out
           </p>
           <p className="border-b-2 border-black/15 p-3 sm:border-r-2 sm:border-b-0 sm:p-4">
-            <span className="text-[var(--queens-red)]">Pancake Kegger:</span> Pancakes &amp; kegstands pair surprisingly well
+            <span className="mr-1 text-[var(--queens-red)]">Pancake Kegger:</span> Pancakes &amp; kegstands pair surprisingly well
           </p>
           <a href="#fund" className="block bg-[var(--queens-gold)] p-3 hover:bg-[#fec94a] sm:p-4">
             Forever Fund: Your class needs you ↓
