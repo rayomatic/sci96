@@ -8,22 +8,7 @@ export function Tabloid() {
   return (
     <section id="top" className="bg-[var(--queens-blue)]/10 px-3 py-8 sm:px-6 sm:py-14">
       <article className={`${oswald.className} mx-auto max-w-5xl bg-white text-[var(--foreground)] shadow-[0_18px_40px_-20px_rgba(0,0,0,0.5)]`}>
-        <header className="flex items-stretch gap-3 bg-white p-3 sm:gap-5 sm:p-5">
-          <div className="flex flex-1 items-center bg-[var(--queens-red)] px-3 py-2 sm:px-6 sm:py-3">
-            <p
-              className={`${anton.className} -skew-x-6 whitespace-nowrap text-[10vw] uppercase leading-none tracking-tight text-white sm:text-7xl`}
-            >
-              Kingston Bugle
-            </p>
-          </div>
-          <div className="hidden w-48 flex-col justify-center gap-1 text-right text-xs font-bold uppercase leading-tight sm:flex">
-            <span>Wednesday, October 21, 2026</span>
-            <span className="text-[var(--queens-red)]">Homecoming Extra</span>
-            <span>One Toonie</span>
-          </div>
-        </header>
-
-        <div className="px-3 sm:px-5">
+        <div className="px-3 pt-3 sm:px-5 sm:pt-5">
           <p className="bg-[var(--queens-blue)] px-3 py-1 text-center text-xs font-bold uppercase tracking-[0.2em] text-[var(--queens-gold)] sm:text-sm">
             Best crest ever returns to campus
           </p>
