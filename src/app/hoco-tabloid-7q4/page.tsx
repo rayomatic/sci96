@@ -78,8 +78,7 @@ function Tabloid() {
           </figure>
 
           <p className="mt-4 text-center text-xl font-bold uppercase leading-tight sm:text-3xl">
-            Class of &rsquo;96 rolls deep into Queen&rsquo;s 100th Homecoming &mdash; foam fingers
-            and all
+            Foam fingers and gold domes dominate campus
           </p>
         </div>
 
