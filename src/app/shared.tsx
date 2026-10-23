@@ -72,9 +72,12 @@ export function Fund() {
         />
 
         <div className="rounded-2xl border border-black/10 bg-white p-7">
+          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-zinc-500">
+            Updated October 23, 2026
+          </p>
           <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
             <p className="text-3xl font-bold tracking-tight text-[var(--queens-blue)]">
-              $165,000{" "}
+              $208,000{" "}
               <span className="text-base font-semibold text-zinc-500">raised so far</span>
             </p>
             <p className="text-sm font-semibold text-zinc-600">
@@ -82,13 +85,35 @@ export function Fund() {
             </p>
           </div>
           <div className="mt-4 h-3 overflow-hidden rounded-full bg-black/10">
-            <div className="h-full rounded-full bg-[var(--queens-red)]" style={{ width: "66%" }} />
+            <div className="h-full rounded-full bg-[var(--queens-red)]" style={{ width: "83%" }} />
+          </div>
+
+          <div className="mt-8 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
+            <p className="text-3xl font-bold tracking-tight text-[var(--queens-blue)]">
+              47{" "}
+              <span className="text-base font-semibold text-zinc-500">classmates have given</span>
+            </p>
+            <p className="text-sm font-semibold text-zinc-600">Goal: 100 donors</p>
+          </div>
+          <div className="mt-4 flex items-center" role="img" aria-label="Participation: 47 of 100 donors">
+            <div className="relative z-10 -mr-2 h-8 w-8 shrink-0 rounded-full border-4 border-white bg-[var(--queens-gold)] shadow-[0_0_0_1px_rgba(0,0,0,0.1)]" />
+            <div className="relative h-4 flex-1 overflow-hidden rounded-r-full bg-black/10">
+              <div className="h-full rounded-r-full bg-[var(--queens-gold)]" style={{ width: "47%" }} />
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-0"
+                style={{
+                  backgroundImage:
+                    "repeating-linear-gradient(to right, transparent 0, transparent calc(10% - 1px), rgba(0,0,0,0.18) calc(10% - 1px), rgba(0,0,0,0.18) 10%)",
+                }}
+              />
+            </div>
           </div>
           <p className="mt-4 text-sm text-zinc-600">
-            We&rsquo;re more than halfway. $250,000 establishes the fund as a permanent endowment —
+            We&rsquo;re more than 80% of the way there. $250,000 establishes the fund as a permanent endowment —
             and the campaign continues with another $250,000 committed over the following five
             years. Every gift brings us closer to a lasting source of support for Smith
-            Engineering students, for generations.
+            Engineering students, for generations. Gifts of any size count toward participation: help us reach 100 Sci&rsquo;96 donors.
           </p>
           <div className="mt-6 flex flex-col gap-3 sm:flex-row">
             <a
