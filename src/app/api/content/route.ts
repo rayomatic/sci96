@@ -1,7 +1,7 @@
 import { get, put, BlobNotFoundError, BlobStoreNotFoundError } from "@vercel/blob";
 
 const PATHNAME = "ticketing-mockup-content.json";
-const EDIT_PASSWORD = process.env.EDIT_PASSWORD ?? "Sci96!";
+const EDIT_PASSWORD = process.env.EDIT_PASSWORD;
 
 export const dynamic = "force-dynamic";
 
@@ -38,7 +38,7 @@ export async function GET() {
 
 export async function POST(req: Request) {
   const password = req.headers.get("x-edit-password") ?? "";
-  if (password !== EDIT_PASSWORD) {
+  if (!EDIT_PASSWORD || password !== EDIT_PASSWORD) {
     return Response.json({ error: "Invalid password" }, { status: 401 });
   }
   let body: unknown;
