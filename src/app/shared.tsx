@@ -6,7 +6,10 @@ const DONATE_URL = "https://givetoqueens.ca/sc96fall26";
 const PRESENTATION_URL =
   "https://click.advancement.queensu.ca/?qs=ABB7InYiOjEsImQiOjQ5NjB9AA0AAAAAAN0UIdh0cPy267noq4XiaX0I9tqx-fMUSUwpTFJaSisFJ0PLAjdWVtD1G9ziQPfWsQ91H2DvPZAZltBqI6CBNKLn-ni6capUrco";
 
+const MERCH_URL = "https://stainsbystudios.com/pages/30th-homecoming-reunion-merch";
+
 const sections = [
+  { id: "merch", label: "Merch" },
   { id: "fund", label: "Forever Fund" },
   { id: "contact", label: "Stay in Touch" },
 ];
@@ -135,6 +138,35 @@ export function Fund() {
           </div>
         </div>
 
+      </div>
+    </section>
+  );
+}
+
+export function Merch() {
+  return (
+    <section id="merch" className="border-t border-black/10 bg-[var(--queens-gold)]">
+      <div className="mx-auto flex max-w-5xl flex-col items-start gap-6 px-6 py-12 sm:flex-row sm:items-center sm:justify-between sm:py-14">
+        <div className="flex flex-col gap-2">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--queens-red)]">
+            Sci&rsquo;96 Merch · Orders open until Dec. 31
+          </p>
+          <h2 className="text-3xl font-bold tracking-tight text-[var(--queens-blue)] sm:text-4xl">
+            Missed the swag? Get it now.
+          </h2>
+          <p className="max-w-xl text-lg text-[var(--queens-blue)]/80">
+            Hoodies, caps, toques and mugs from Homecoming are back for one more run, thanks to
+            Eleanor Stainsby at Stainsby Studios. Everything ships in mid-to-late January.
+          </p>
+        </div>
+        <a
+          href={MERCH_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex h-12 shrink-0 items-center justify-center rounded-full bg-[var(--queens-blue)] px-7 text-base font-semibold text-white shadow-sm transition hover:bg-[var(--queens-red)]"
+        >
+          Shop the merch
+        </a>
       </div>
     </section>
   );
